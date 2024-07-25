@@ -1,0 +1,54 @@
+version: '3.3'
+
+services:
+  postgresmon:
+    container_name: postgresdb_14
+    image: postgres:14.12
+    hostname: postgresmon
+    # restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      # <Port exposed>:<postgres port running in the container>
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - ./poke-data:/var/lib/postgresql/data
+      - ./dbinit.sh:/docker-entrypoint-initdb.d/dbinit.sh
+    networks:
+      - postgres-network
+    healthcheck:
+      # https://www.postgresql.org/docs/current/app-pg-isready.html
+      test: 'pg_isready -q -d ${POSTGRES_DB} -U ${POSTGRES_USER}'
+      interval: 30s
+      timeout: 60s
+      retries: 5
+
+  pgadmin:
+    container_name: pgadmin_4
+    image: dpage/pgadmin4
+    # restart: unless-stopped
+    depends_on:
+      - postgresmon
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - '${PGADMIN_PORT:-5050}:80'
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - postgres-network
+
+volumes:
+  pgadmin-data:
+
+networks:
+  postgres-network:
+    driver: bridge

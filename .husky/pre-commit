@@ -24,7 +24,7 @@ backendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.md" | grep -E
 if [ ! -z "$backendfiles" ]; then
   cd backend
   npm run gendocs
-  htmlfiles=$(git diff --name-only --diff-filter=ACMR "*.html")
+  htmlfiles=$(git diff --name-only --diff-filter=ACMR "*.html" | grep -E "^backend/" | cut -c9-)
   if [ ! -z "$htmlfiles" ]; then
     git add $htmlfiles
   fi
@@ -32,4 +32,4 @@ if [ ! -z "$backendfiles" ]; then
 fi
 
 # Jest
-cd backend && npx lint-staged
+cd backend && npx lint-staged && cd ..

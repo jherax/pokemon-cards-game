@@ -17,6 +17,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
+    "psql": "node config/start-psql.js",
     "build": "tsc -p config/tsconfig.build.json",
     "build-prd": "node config/esbuild.js",
     "build-all": "run-s swagger clean build-prd",

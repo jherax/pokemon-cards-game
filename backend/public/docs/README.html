@@ -1,76 +1,105 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <title>README</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css"
-    />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <style>
-      pre > code.hljs {
-        padding: var(--spacing);
-        color: rgb(162, 175, 185);
-      }
-      blockquote p {
-        margin-bottom: 0;
-      }
-    </style>
-    <script>
-      hljs.highlightAll();
-    </script>
+    <style> pre>code.hljs {padding: var(--spacing); color: rgb(162, 175, 185);} blockquote p {margin-bottom: 0;}</style>
+    <script>hljs.highlightAll();</script>
   </head>
   <body>
     <main>
-      <!-- markdownlint-disable MD033 -->
-      <h1 id="pokemoncardbattletcg">Pokemon Card Battle TCG</h1>
-      <p>
-        This backend application consist of a REST API which exposes the 👉
-        <a href="#endpoints"><em>endpoints</em></a> documented by Swagger at
-        <code class="prettyprint">/docs</code> path. See the
-        <a href="#swagger">Swagger</a> section for more details.
-      </p>
-      <h2 id="environment">Environment</h2>
-      <p>
-        This aplication is created using Node.js v20. It is recommended using
-        <strong><a href="https://github.com/creationix/nvm">nvm</a></strong>
-        (Node Version Manager) to manage Node.js versions. Go to
-        <a href="https://github.com/creationix/nvm"
-          >github.com/creationix/nvm</a
-        >
-        and check the installation process for your OS.
-      </p>
-      <p>
-        Make sure to set the env variables. For local environment you can create
-        a <code class="prettyprint">.env</code> file with the following
-        environment variables:
-      </p>
-      <pre
-        class="prettyprint linenums"
-      ><code class="bash language-bash">APP_HOST=localhost
+    <!-- markdownlint-disable MD033 -->
+<h1 id="pokemoncardbattletcg">Pokemon Card Battle TCG</h1>
+<p>This backend application consist of a REST API which exposes the 👉
+<a href="#endpoints"><em>endpoints</em></a> documented by Swagger at <code class="prettyprint">/docs</code> path. See the
+<a href="#swagger">Swagger</a> section for more details.</p>
+<h2 id="environment">Environment</h2>
+<p>This aplication is created using Node.js v20. It is recommended using
+<strong><a href="https://github.com/creationix/nvm">nvm</a></strong> (Node Version Manager) to manage
+Node.js versions. Go to
+<a href="https://github.com/creationix/nvm">github.com/creationix/nvm</a> and check the
+installation process for your OS.</p>
+<p>Make sure to set the env variables. For local environment you can create a <code class="prettyprint">.env</code> file with the following environment variables:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash"># dev | prod | qa
+NODE_ENV=dev
+APP_HOST=localhost
 APP_PORT=3004
 </code></pre>
-      <p>Install required dependencies:</p>
-      <pre
-        class="prettyprint linenums"
-      ><code class="bash language-bash">npm install
+<blockquote>
+  <p>💡 See the <a href="#docker">Docker</a> section to set up the environment variables for
+  Postgres and PG Admin.</p>
+</blockquote>
+<p>Install required dependencies:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm install
 </code></pre>
-      <h2 id="runningtheserver">Running the server</h2>
-      <p>After all dependencies are installed, just run the command:</p>
-      <pre
-        class="prettyprint linenums"
-      ><code class="bash language-bash">npm run dev:server
+<h2 id="runningtheserver">Running the server</h2>
+<p>After all dependencies are installed, just run the command:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run psql
+npm run dev:server
 </code></pre>
-      <h2 id="endpoints">Endpoints</h2>
-      <p>The following endpoints are exposed by Express:</p>
-      <h2 id="swagger">Swagger</h2>
-      <p>TODO: Configure tsoa</p>
+<h2 id="endpoints">Endpoints</h2>
+<p>The following endpoints are exposed by Express:</p>
+<h2 id="swagger">Swagger</h2>
+<p>TODO: Configure tsoa</p>
+<h2 id="docker">Docker</h2>
+<p>MongoDB is loaded as a docker container, sou you need to make sure to create a <code class="prettyprint">.env</code> file with the following environment variables:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">POSTGRES_USER=appuser
+POSTGRES_PASSWORD=symph0NY
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=pokemon
+
+PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+PGADMIN_DEFAULT_PASSWORD=admin
+PGADMIN_PORT=5050
+</code></pre>
+<p>In order to run Postgres, you need to mount the docker container, and start the <code class="prettyprint">psql</code> service. To do that just run the command:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run psql
+</code></pre>
+<p>After that, let's make sure the container is running:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">docker ps -a
+</code></pre>
+<p>You should have a result like this:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">CONTAINER ID   IMAGE             COMMAND                  CREATED      STATUS        PORTS                    NAMES
+369fec1a41d2   dpage/pgadmin4    "/entrypoint.sh"         1 hour ago   Up 2 minutes  0.0.0.0:5050-&gt;80/tcp     pgadmin_4
+879b90b32d08   postgres:114.12   "docker-entrypoint.s…"   1 hour ago   Up 2 minutes  0.0.0.0:5432-&gt;5432/tcp   postgresdb_14
+</code></pre>
+<p>To open
+<a href="https://anasdidi.dev/articles/200713-docker-compose-postgres/">PG Admin</a>, the
+web-based Postgres admin interface, go to the browser and navigate to <code class="prettyprint">http://localhost:5050/</code>, using credentials in the env variables <code class="prettyprint">PGADMIN_DEFAULT_EMAIL</code> and <code class="prettyprint">PGADMIN_DEFAULT_PASSWORD</code>.</p>
+<ul>
+<li>Click on <code class="prettyprint">Add New Server</code></li>
+<li>Click on <code class="prettyprint">Connection</code> tab, and put <code class="prettyprint">postgresmon</code> as the Host name, which is
+the database service name in the <code class="prettyprint">docker-compose.yml</code> file.</li>
+<li>Alternatively, you can use the docker container public IP . Just execute: <code class="prettyprint">docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgresdb_14</code></li>
+<li>Put the username and password specified in the env variables <code class="prettyprint">POSTGRES_USER</code>
+and <code class="prettyprint">POSTGRES_PASSWORD</code> respectively.</li>
+</ul>
+<p>If you want to open the terminal to run commands on the container, just run the
+following command for the specific container:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">docker exec -it postgresdb_14 bash
+root@postgresmon:/#
+</code></pre>
+<p>For example, we can get the list of databases by running:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash"># psql -h {HOST} -p {PORT} -U {USER} -l
+psql -h localhost -p 5432 -U appuser -l
+</code></pre>
+<p>And we get the following results:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">                               List of databases
+   Name    |  Owner  | Encoding |  Collate   |   Ctype    |  Access privileges
+-----------+---------+----------+------------+------------+---------------------
+ pokemon   | appuser | UTF8     | en_US.utf8 | en_US.utf8 |
+ postgres  | appuser | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0 | appuser | UTF8     | en_US.utf8 | en_US.utf8 | =c/appuser         +
+           |         |          |            |            | appuser=CTc/appuser
+ template1 | appuser | UTF8     | en_US.utf8 | en_US.utf8 | =c/appuser         +
+           |         |          |            |            | appuser=CTc/appuser
+</code></pre>
     </main>
   </body>
 </html>
