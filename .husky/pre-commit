@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Prettier
+backendfiles=$(git diff --name-only --cached --diff-filter=ACMR | grep -E "^backend/" | cut -c9-)
+if [ ! -z "$backendfiles" ]; then
+  cd backend
+  npx prettier --write $backendfiles --ignore-unknown
+  git add $backendfiles
+  cd ..
+fi
+
+# ESLint
+backendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.js" "*.ts" "*.jsx" "*.tsx" | grep -E "^backend/" | cut -c9-)
+if [ ! -z "$backendfiles" ]; then
+  cd backend
+  npx eslint --quiet --fix --cache --cache-location ".cache/" $backendfiles
+  git add $backendfiles
+  cd ..
+fi
+
+# Markdown
+backendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.md" | grep -E "^backend/" | cut -c9-)
+if [ ! -z "$backendfiles" ]; then
+  cd backend
+  npm run gendocs
+  htmlfiles=$(git diff --name-only --diff-filter=ACMR "*.html")
+  if [ ! -z "$htmlfiles" ]; then
+    git add $htmlfiles
+  fi
+  cd ..
+fi
+
+# Jest
+cd backend && npx lint-staged

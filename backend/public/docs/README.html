@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>README</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+      pre > code.hljs {
+        padding: var(--spacing);
+        color: rgb(162, 175, 185);
+      }
+      blockquote p {
+        margin-bottom: 0;
+      }
+    </style>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <main>
+      <!-- markdownlint-disable MD033 -->
+      <h1 id="pokemoncardbattletcg">Pokemon Card Battle TCG</h1>
+      <p>
+        This backend application consist of a REST API which exposes the 👉
+        <a href="#endpoints"><em>endpoints</em></a> documented by Swagger at
+        <code class="prettyprint">/docs</code> path. See the
+        <a href="#swagger">Swagger</a> section for more details.
+      </p>
+      <h2 id="environment">Environment</h2>
+      <p>
+        This aplication is created using Node.js v20. It is recommended using
+        <strong><a href="https://github.com/creationix/nvm">nvm</a></strong>
+        (Node Version Manager) to manage Node.js versions. Go to
+        <a href="https://github.com/creationix/nvm"
+          >github.com/creationix/nvm</a
+        >
+        and check the installation process for your OS.
+      </p>
+      <p>
+        Make sure to set the env variables. For local environment you can create
+        a <code class="prettyprint">.env</code> file with the following
+        environment variables:
+      </p>
+      <pre
+        class="prettyprint linenums"
+      ><code class="bash language-bash">APP_HOST=localhost
+APP_PORT=3004
+</code></pre>
+      <p>Install required dependencies:</p>
+      <pre
+        class="prettyprint linenums"
+      ><code class="bash language-bash">npm install
+</code></pre>
+      <h2 id="runningtheserver">Running the server</h2>
+      <p>After all dependencies are installed, just run the command:</p>
+      <pre
+        class="prettyprint linenums"
+      ><code class="bash language-bash">npm run dev:server
+</code></pre>
+      <h2 id="endpoints">Endpoints</h2>
+      <p>The following endpoints are exposed by Express:</p>
+      <h2 id="swagger">Swagger</h2>
+      <p>TODO: Configure tsoa</p>
+    </main>
+  </body>
+</html>
