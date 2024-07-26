@@ -32,5 +32,12 @@ jest.mock('../src/server/config', () => {
       },
       maxRequests: 5,
     },
+    db: {
+      host: 'localhost',
+      port: 9999,
+      database: 'test-db',
+      username: 'contoso',
+      password: 'costoso',
+    },
   };
 });
