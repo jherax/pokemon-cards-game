@@ -1,7 +1,7 @@
 {
-  "name": "pokemon-cards-game",
-  "version": "0.1.0",
+  "name": "pokemon-cards-game-backend",
   "description": "Pokemon Card Battle TCG (Express + Postgres + tsoa)",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.esm.mjs",
   "types": "dist/index.d.ts",
