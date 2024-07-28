@@ -2,24 +2,55 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Prettier
+# ===========
 backendfiles=$(git diff --name-only --cached --diff-filter=ACMR | grep -E "^backend/" | cut -c9-)
 if [ ! -z "$backendfiles" ]; then
   cd backend
   npx prettier --write $backendfiles --ignore-unknown
   git add $backendfiles
+  echo "→ Prettier done!"
+  cd ..
+fi
+
+frontendfiles=$(git diff --name-only --cached --diff-filter=ACMR | grep -E "^frontend/" | cut -c10-)
+if [ ! -z "$frontendfiles" ]; then
+  cd frontend
+  npx prettier --write $frontendfiles --ignore-unknown
+  git add $frontendfiles
+  echo "→ Prettier done!"
   cd ..
 fi
 
 # ESLint
+# ===========
 backendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.js" "*.ts" "*.jsx" "*.tsx" | grep -E "^backend/" | cut -c9-)
 if [ ! -z "$backendfiles" ]; then
   cd backend
   npx eslint --quiet --fix --cache --cache-location ".cache/" $backendfiles
   git add $backendfiles
+  echo "→ ESLint done!"
+
+  # Jest Tests
+  npx lint-staged
+  echo "→ Jest done!"
   cd ..
 fi
 
-# Markdown
+frontendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.js" "*.ts" "*.jsx" "*.tsx" | grep -E "^frontend/" | cut -c10-)
+if [ ! -z "$frontendfiles" ]; then
+  cd frontend
+  npx eslint --quiet --fix --cache --cache-location ".cache/" $frontendfiles
+  git add $frontendfiles
+  echo "→ ESLint done!"
+
+  # Jest Tests
+  npx lint-staged
+  echo "→ Jest done!"
+  cd ..
+fi
+
+# Markdown to HTML (public/docs)
+# ===========
 backendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.md" | grep -E "^backend/" | cut -c9-)
 if [ ! -z "$backendfiles" ]; then
   cd backend
@@ -31,5 +62,13 @@ if [ ! -z "$backendfiles" ]; then
   cd ..
 fi
 
-# Jest
-cd backend && npx lint-staged && cd ..
+frontendfiles=$(git diff --name-only --cached --diff-filter=ACMR "*.md" | grep -E "^frontend/" | cut -c10-)
+if [ ! -z "$frontendfiles" ]; then
+  cd frontend
+  npm run gendocs
+  htmlfiles=$(git diff --name-only --diff-filter=ACMR "*.html" | grep -E "^frontend/" | cut -c10-)
+  if [ ! -z "$htmlfiles" ]; then
+    git add $htmlfiles
+  fi
+  cd ..
+fi
