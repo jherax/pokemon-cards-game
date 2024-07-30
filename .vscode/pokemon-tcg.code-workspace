@@ -1,0 +1,38 @@
+{
+  "folders": [
+    {
+      "name": "ROOT",
+      "path": "../"
+    },
+    {
+      "name": "FRONTEND-PROJECT",
+      "path": "../frontend"
+    },
+    {
+      "name": "BACKEND-PROJECT",
+      "path": "../backend"
+    },
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/.cache": true,
+      "**/node_modules/": true
+    },
+    "files.watcherExclude": {
+      "**/*.snap": true,
+      "**/.git/objects/**": true,
+      "**/node_modules/**": true,
+      "**/package-lock.json": true
+    },
+    "search.exclude": {
+      "**/*.snap": true,
+      "**/node_modules/**": true,
+      "**/package-lock.json": true
+    }
+  }
+}
