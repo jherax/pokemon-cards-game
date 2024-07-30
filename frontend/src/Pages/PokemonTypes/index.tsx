@@ -4,16 +4,16 @@ import {Link, useLocation} from 'react-router-dom';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import Title from '../../Components/Title/Title';
+import usePokemonTypes from '../../Hooks/usePokemonTypes';
 import PokemonLogo from '../../img/logo.png';
-import TypesMock from '../../Mocks/Types';
 import {useStyles} from './styled';
 
 const PokemonTypes = () => {
   const classes = useStyles();
   const {pathname} = useLocation();
-  const {types} = TypesMock;
+  const {pokeTypes} = usePokemonTypes();
 
-  if (!types.length) {
+  if (!pokeTypes.length) {
     return <Loading middle />;
   }
 
@@ -24,7 +24,7 @@ const PokemonTypes = () => {
       </Title>
 
       <ul className={classes.ul}>
-        {types.map(({bg, img, name}) => (
+        {pokeTypes.map(({bg, img, name}) => (
           <Link to={`${pathname}${name}`} key={name}>
             <li
               key={name}

@@ -16,6 +16,8 @@ declare global {
   }>;
 
   export type IconSize = 'small' | 'xsmall' | 'medium' | 'big';
+
+  export type PokeTypesName = keyof GobalState['localTypes'];
 }
 
 // THIS IS NECESSARY
