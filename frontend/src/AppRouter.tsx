@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import PokemonCard from './Pages/PokemonCard';
 import PokemonCards from './Pages/PokemonCards';
 import PokemonTypes from './Pages/PokemonTypes';
 
@@ -16,7 +17,7 @@ const AppRouter = createBrowserRouter(
     <Route path='/' element={<Outlet />} errorElement={<p>Error 404</p>}>
       <Route path='' element={<PokemonTypes />} />
       <Route path='/:type' element={<PokemonCards />} />
-      <Route path='/:type/:id' element={<p>Card</p>} />
+      <Route path='/:type/:id' element={<PokemonCard />} />
       <Route path='/error404' element={<p>Error 404</p>} />
     </Route>,
   ),
