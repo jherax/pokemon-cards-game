@@ -61,6 +61,8 @@ const initialGlobalState = {
       img: Water,
     },
   },
+  cardsByType: {} as Record<string, any>,
+  cardsById: {} as Record<string, any>,
 };
 
 export {initialGlobalState};

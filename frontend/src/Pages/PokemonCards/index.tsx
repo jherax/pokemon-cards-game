@@ -7,26 +7,32 @@ import Button from '../../Components/Button/Button';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import Title from '../../Components/Title/Title';
-import CardsMock from '../../Mocks/Cards';
+import usePokemonCards from '../../Hooks/usePokemonCards';
 import {useStyles} from './styled';
 
 const PokemonCards = () => {
   const {type} = useParams();
   const {pathname} = useLocation();
   const classes = useStyles();
+
   const {
     title: {bg, img},
     cards,
     isFinal,
     moreLoading,
-  } = CardsMock;
+    loadNextPage,
+  } = usePokemonCards(type as PokeTypesName);
 
   if (!img || !type) {
     return <Navigate to='/error404' replace={true} />;
   }
 
+  if (!cards.length) {
+    return <Loading color={bg} middle />;
+  }
+
   const onClickNextPage = () => {
-    console.info('Clicked: Load more...');
+    loadNextPage();
   };
 
   return (
