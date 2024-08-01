@@ -1,7 +1,7 @@
 import {Img} from 'react-image';
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 
-import {type IconSize, SIZES, useStyles} from './Icon.styled';
+import {SIZES, useStyles} from './Icon.styled';
 
 const Icon = (props: IconProps) => {
   const {

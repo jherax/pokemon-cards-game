@@ -11,7 +11,6 @@ import CardBoxIcon, {
 import CardInfo from '../../Components/Cards/CardInfo';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
-import {type IconSize} from '../../Components/Logo/Icon.styled';
 import Title from '../../Components/Title/Title';
 import CardDataMock from '../../Mocks/Card';
 import {useStyles} from './styled';

@@ -6,8 +6,6 @@ type StyleProps = {
   boxShadow?: boolean;
 };
 
-export type IconSize = keyof typeof SIZES;
-
 export const SIZES = {
   xsmall: '17px',
   small: '35px',

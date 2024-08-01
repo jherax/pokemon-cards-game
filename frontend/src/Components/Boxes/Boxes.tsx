@@ -1,7 +1,6 @@
 import {Fragment} from 'react/jsx-runtime';
 
 import Icon from '../Logo/Icon';
-import {type IconSize} from '../Logo/Icon.styled';
 import {useStyles} from './Boxes.styled';
 
 const Boxes = ({boxes}: BoxesProps) => {
@@ -27,7 +26,7 @@ export type BoxesProps = Readonly<{
 }>;
 
 export type Box = {
-  index: string; // TODO: uuid?
+  index: string;
   name: string;
   text: string;
   bg: string;
