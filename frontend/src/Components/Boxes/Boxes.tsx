@@ -27,9 +27,9 @@ export type BoxesProps = Readonly<{
 
 export type Box = {
   index: string;
-  name: string;
-  text: string;
+  name?: string;
+  text?: string;
+  img?: string;
   bg: string;
-  img: string;
   size: IconSize;
 };

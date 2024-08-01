@@ -79,6 +79,56 @@ declare global {
     type: string;
     value: string; // '×2', '-20'
   };
+
+  export type PokeCardDetailType = {
+    index: string;
+    name: PokeTypesName;
+    img: string;
+    bg: string;
+    size: IconSize;
+    text?: string;
+  };
+
+  export interface PokeCardDetailAttack extends PokeAttack {
+    cost: PokeCardDetailType[];
+  }
+
+  export type PokeCardDetailMisc = {
+    title: string;
+    boxes: [
+      {
+        index: string;
+        name?: string;
+        text?: string;
+        img?: string;
+        bg: string;
+        size: IconSize;
+      },
+    ];
+  };
+
+  export type PokeCardDetail = {
+    svgImage: string;
+    title: string;
+    subtitle: string;
+    image: string;
+    types: PokeCardDetailType[];
+    miscellaneous: PokeCardDetailMisc[];
+    ability?: {
+      title: string;
+      type: string;
+      color: string;
+      text: string[];
+    };
+    rules?: {
+      title: string;
+      text: string[];
+    };
+    attacks?: {
+      title: string;
+      attacks: PokeCardDetailAttack[];
+    };
+  };
 }
 
 // THIS IS NECESSARY

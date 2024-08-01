@@ -2,23 +2,26 @@ import {Img} from 'react-image';
 import Skeleton from 'react-loading-skeleton';
 import {Navigate, useParams} from 'react-router-dom';
 
-import CardAttacks, {
-  type CardAttackProps,
-} from '../../Components/Cards/CardAttack';
-import CardBoxIcon, {
-  type CardBoxIconProps,
-} from '../../Components/Cards/CardBoxIcon';
+import CardAttacks from '../../Components/Cards/CardAttack';
+import CardBoxIcon from '../../Components/Cards/CardBoxIcon';
 import CardInfo from '../../Components/Cards/CardInfo';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import Title from '../../Components/Title/Title';
-import CardDataMock from '../../Mocks/Card';
+import usePokemonDetail from '../../Hooks/usePokemonDetail';
 import {useStyles} from './styled';
 
 const PokemonCard = () => {
   const {id} = useParams();
   const classes = useStyles();
-  const {card} = CardDataMock;
+  const {card, resolved} = usePokemonDetail(id as string);
+
+  if (!card && !resolved) {
+    return <Loading middle />;
+  }
+  if (!card && resolved) {
+    return <Navigate to='/error404' replace={true} />;
+  }
 
   const {
     svgImage,
@@ -32,14 +35,6 @@ const PokemonCard = () => {
     miscellaneous,
   } = card;
 
-  if (!card) {
-    return <Loading middle />;
-  }
-  // TODO: Validate the type when error occurs
-  if ((card as unknown as string) === 'Error') {
-    return <Navigate to='/error404' replace={true} />;
-  }
-
   return (
     <div className={classes.container}>
       <Title title={title} subtitle={subtitle}>
@@ -51,7 +46,7 @@ const PokemonCard = () => {
             text={text}
             img={img}
             bg={bg}
-            size={size as IconSize}
+            size={size}
           />
         ))}
       </Title>
@@ -62,9 +57,8 @@ const PokemonCard = () => {
         <div className={classes.right}>
           {ability && <CardInfo data={ability} />}
           {rules && <CardInfo data={rules} />}
-          {attacks && <CardAttacks data={attacks as CardAttackProps['data']} />}
-
-          <CardBoxIcon data={miscellaneous as CardBoxIconProps['data']} />
+          {attacks && <CardAttacks data={attacks} />}
+          <CardBoxIcon data={miscellaneous} />
         </div>
       </div>
     </div>
