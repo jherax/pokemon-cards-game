@@ -53,7 +53,6 @@ const usePokemonCards = (typeId: PokeTypesName) => {
           // update last page fetched
           setLastPageFetched(page);
           setGlobalState({
-            localTypes: globalState.localTypes,
             cardsById: updatedCardsById,
             cardsByType: {
               ...globalState.cardsByType,
@@ -72,8 +71,6 @@ const usePokemonCards = (typeId: PokeTypesName) => {
   // Callback that set next page to fetch
   const loadNextPage = useCallback(() => {
     setGlobalState({
-      localTypes: globalState.localTypes,
-      cardsById: globalState.cardsById,
       cardsByType: {
         ...globalState.cardsByType,
         [cardsByType.id]: {

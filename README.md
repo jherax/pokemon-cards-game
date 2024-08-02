@@ -4,8 +4,12 @@ This is the repository base.
 
 This fullstack application consist of:
 
-1. Backend: Express + tsoa, Postgres ([README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
-1. Frontend: React + styled-components
+1. Backend: Express + tsoa, Postgres (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
+1. Frontend: React + [react-jss](https://cssinjs.org/react-jss/) (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/frontend))
+
+You can see the deployed App here:
+
+- [pokemon-cards-game-frontend.vercel.app](https://pokemon-cards-game-frontend.vercel.app/)
 
 ## husky
 

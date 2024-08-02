@@ -15,6 +15,7 @@
     "eject": "react-scripts eject",
     "test": "react-scripts test",
     "gendocs": "node scripts/md2html.js",
+    "vercel-build": "react-scripts build",
     "test:staged": "cross-env CI=true react-scripts test --env=jsdom --bail --findRelatedTests --passWithNoTests"
   },
   "dependencies": {

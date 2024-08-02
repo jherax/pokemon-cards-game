@@ -1,13 +1,27 @@
-import Axios from 'axios';
+import Axios, {type AxiosRequestConfig} from 'axios';
 
+import config from '../config/app.cfg';
+
+// This Header is required only for PROD environments
+const instanceConfig: AxiosRequestConfig = config.POKEMON_API_KEY
+  ? {
+      headers: {
+        'X-Api-Key': `${config.POKEMON_API_KEY}`,
+      },
+    }
+  : {};
+
+/** @see https://dev.to/nickfrosty/24-things-i-learned-deploying-to-vercel-26n#9-are-you-using-axios-on-vercel */
 const instance = Axios.create({
-  baseURL: 'https://api.pokemontcg.io/v1/',
+  baseURL: config.POKEMON_API_URL,
+  ...instanceConfig,
 });
 
-// Auth and token validation should be handled here
-
+/** @see https://blog.logrocket.com/using-axios-set-request-headers/#setting-conditional-headers */
 instance.interceptors.request.use(
-  config => ({...config}),
+  // Auth and token validation should be handled here:
+  // config.headers['Authorization'] = `Bearer ${TOKEN}`
+  config => config,
   error => Promise.reject(error),
 );
 

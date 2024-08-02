@@ -47,16 +47,16 @@ const PokemonCards = () => {
 
       <ul className={classes.ul}>
         {cards.map(({id, name, imageUrl}) => (
-          <Link to={`${pathname}/${id}`} key={id}>
-            <li key={name} className={classes.li}>
+          <li key={id} className={classes.li}>
+            <Link to={`${pathname}/${id}`}>
               <Img
                 src={imageUrl}
                 loader={<Skeleton />}
                 alt={name}
                 className={classes.img}
               />
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
 

@@ -11,7 +11,7 @@ const usePokemonDetail = (cardId: string) => {
   const [resolved, setResolved] = useState(false);
 
   useEffect(() => {
-    const {cardsById, cardsByType, localTypes} = globalState;
+    const {cardsById, localTypes} = globalState;
 
     if (!resolved) {
       getPokemonDetailMemo(cardId)
@@ -23,8 +23,6 @@ const usePokemonDetail = (cardId: string) => {
           setCardDetail(card);
           if (!cardsById[cardId]) {
             setGlobalState({
-              localTypes,
-              cardsByType,
               cardsById: {
                 ...cardsById,
                 [cardId]: dataCard,
