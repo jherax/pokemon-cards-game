@@ -1,8 +1,7 @@
 {
   "name": "pokemon-cards-game-frontend",
   "description": "Pokemon Card Battle TCG",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
   "author": "David Rivera <jherax@gmail.com>",
   "license": "ISC",
   "engines": {
