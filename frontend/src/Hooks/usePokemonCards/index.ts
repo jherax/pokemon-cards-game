@@ -7,6 +7,7 @@ const usePokemonCards = (typeId: PokeTypesName) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
   const [lastPageFetched, setLastPageFetched] = useState(0);
 
+  // checks if the set by type exists, if not, initialize it
   const cardsByType: PokeCardsByType = useMemo(() => {
     let cards = {...globalState.cardsByType[typeId]};
     if (!cards.id) {

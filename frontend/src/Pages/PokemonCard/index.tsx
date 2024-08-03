@@ -12,9 +12,9 @@ import usePokemonDetail from '../../Hooks/usePokemonDetail';
 import {useStyles} from './styled';
 
 const PokemonCard = () => {
-  const {id} = useParams();
+  const {id = 'null'} = useParams();
+  const {card, resolved} = usePokemonDetail(id);
   const classes = useStyles();
-  const {card, resolved} = usePokemonDetail(id as string);
 
   if (!card && !resolved) {
     return <Loading middle />;

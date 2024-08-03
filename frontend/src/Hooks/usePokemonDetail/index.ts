@@ -14,7 +14,12 @@ const usePokemonDetail = (cardId: string) => {
     const {cardsById, localTypes} = globalState;
 
     if (!resolved) {
-      getPokemonDetailMemo(cardId)
+      // checks if the card exists, if not, fetch it
+      const getPokemonCard = cardsById[cardId]
+        ? Promise.resolve(cardsById[cardId])
+        : getPokemonDetailMemo(cardId);
+
+      getPokemonCard
         .then(dataCard => {
           const card = transformCard(dataCard, localTypes);
           setResolved(true);
