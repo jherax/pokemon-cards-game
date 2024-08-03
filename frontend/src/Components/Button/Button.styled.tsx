@@ -2,6 +2,7 @@ import {createUseStyles} from 'react-jss';
 
 type StyleProps = {
   color: string;
+  hide: boolean;
 };
 
 export const useStyles = createUseStyles({
@@ -9,6 +10,7 @@ export const useStyles = createUseStyles({
     paddingTop: '25px',
     paddingBottom: '50px',
     textAlign: 'center',
+    visibility: ({hide}: StyleProps) => (hide ? 'hidden' : 'visible'),
   },
   button: {
     background: 'transparent',

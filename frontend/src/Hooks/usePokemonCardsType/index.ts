@@ -1,9 +1,9 @@
 import {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 import GlobalContext from '../../Providers/GlobalContext';
-import getPokemonCardsMemo from './service';
+import getPokemonCardsTypeMemo from './service';
 
-const usePokemonCards = (typeId: PokeTypesName) => {
+const usePokemonCardsType = (typeId: PokeTypesName) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
   const [lastPageFetched, setLastPageFetched] = useState(0);
 
@@ -28,23 +28,24 @@ const usePokemonCards = (typeId: PokeTypesName) => {
 
     // fetch the current page
     if (page !== lastPageFetched) {
-      getPokemonCardsMemo(id, pageSize, page)
+      getPokemonCardsTypeMemo(id, pageSize, page)
         .then(dataCards => {
-          let namedCards: Record<string, PokeCard> = {};
+          let newCardsById: Record<string, PokeCard> = {};
 
-          namedCards = dataCards.reduce((hashtabe, card) => {
+          newCardsById = dataCards.reduce((pokeCards, card) => {
             // adds only cards not present in globalState
             if (!globalState.cardsById[card.id]) {
-              hashtabe[card.id] = card;
+              pokeCards[card.id] = card;
             }
-            return hashtabe;
-          }, namedCards);
+            return pokeCards;
+          }, newCardsById);
 
           // prevents adding duplicate cards
-          const hasNewCards = Object.keys(namedCards).length > 0;
+          const hasNewCards = Object.keys(newCardsById).length > 0;
+          const results = dataCards.length;
 
           const updatedCardsById = hasNewCards
-            ? {...globalState.cardsById, ...namedCards}
+            ? {...globalState.cardsById, ...newCardsById}
             : globalState.cardsById;
 
           const updatedPokeCards = hasNewCards
@@ -57,19 +58,20 @@ const usePokemonCards = (typeId: PokeTypesName) => {
             cardsById: updatedCardsById,
             cardsByType: {
               ...globalState.cardsByType,
-              [id]: {
+              [id as PokeTypesName]: {
                 ...cardsByType,
                 cards: updatedPokeCards,
-                isFinal: !dataCards.length,
+                isFinal: !results || results < pageSize,
+                isLoading: false,
               },
             },
           });
         })
         .catch(console.error);
     }
-  }, [lastPageFetched, cardsByType, globalState, setGlobalState]);
+  }, [cardsByType, lastPageFetched, globalState, setGlobalState]);
 
-  // Callback that set next page to fetch
+  // triggers the next page to fetch
   const loadNextPage = useCallback(() => {
     setGlobalState({
       cardsByType: {
@@ -77,6 +79,7 @@ const usePokemonCards = (typeId: PokeTypesName) => {
         [cardsByType.id]: {
           ...cardsByType,
           page: cardsByType.page + 1,
+          isLoading: true,
         },
       },
     });
@@ -85,4 +88,4 @@ const usePokemonCards = (typeId: PokeTypesName) => {
   return {...cardsByType, loadNextPage};
 };
 
-export default usePokemonCards;
+export default usePokemonCardsType;

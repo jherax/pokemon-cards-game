@@ -8,6 +8,7 @@ declare global {
         img: string;
       };
     };
+    cardsByName: PokeCardsByName;
     cardsByType: Record<PokeTypesName, PokeCardsByType>;
     cardsById: Record<string, PokeCard>;
   };
@@ -22,14 +23,18 @@ declare global {
   export type PokeTypesName = keyof GobalState['localTypes'];
 
   export type PokeCardsByType = {
-    id: string;
+    id: PokeTypesName;
     title: GobalState['localTypes']['Unknown'];
     cards: PokeCard[];
     page: number;
     pageSize: number;
     isFinal: boolean;
-    moreLoading?: boolean;
+    isLoading?: boolean;
   };
+
+  export interface PokeCardsByName extends Omit<PokeCardsByType, 'id'> {
+    matchName: string;
+  }
 
   export type PokeCard = {
     id: string;

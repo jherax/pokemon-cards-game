@@ -1,0 +1,4 @@
+@baseUrl = {{$dotenv REACT_APP_POKEMON_API_URL}}
+
+GET {{baseUrl}}/cards?name=Jolteon&pageSize=3&page=1
+Content-Type: application/json

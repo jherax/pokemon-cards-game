@@ -61,6 +61,7 @@ const initialGlobalState = {
       img: Water,
     },
   },
+  cardsByName: {} as PokeCardsByName,
   cardsByType: {} as Record<string, any>,
   cardsById: {} as Record<string, any>,
 };

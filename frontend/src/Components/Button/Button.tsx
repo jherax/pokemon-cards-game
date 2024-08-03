@@ -1,8 +1,8 @@
 import {useStyles} from './Button.styled';
 
 const Button = (props: ButtonProps) => {
-  const {text, onClick, color = '#ed1d25'} = props;
-  const classes = useStyles({color});
+  const {text, onClick, color = '#ed1d25', hide = false} = props;
+  const classes = useStyles({color, hide});
 
   return (
     <div className={classes.container}>
@@ -19,4 +19,5 @@ export type ButtonProps = Readonly<{
   text: string;
   onClick: () => void;
   color?: string;
+  hide?: boolean;
 }>;

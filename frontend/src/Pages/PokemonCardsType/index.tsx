@@ -7,11 +7,11 @@ import Button from '../../Components/Button/Button';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import Title from '../../Components/Title/Title';
-import usePokemonCards from '../../Hooks/usePokemonCards';
+import usePokemonCardsType from '../../Hooks/usePokemonCardsType';
 import {useStyles} from './styled';
 
-const PokemonCards = () => {
-  const {type} = useParams();
+const PokemonCardsType = () => {
+  const {type = 'null'} = useParams();
   const {pathname} = useLocation();
   const classes = useStyles();
 
@@ -19,21 +19,16 @@ const PokemonCards = () => {
     title: {bg, img},
     cards,
     isFinal,
-    moreLoading,
+    isLoading,
     loadNextPage,
-  } = usePokemonCards(type as PokeTypesName);
+  } = usePokemonCardsType(type as PokeTypesName);
 
-  if (!img || !type) {
+  if (!img || type === 'null') {
     return <Navigate to='/error404' replace={true} />;
   }
-
   if (!cards.length) {
     return <Loading color={bg} middle />;
   }
-
-  const onClickNextPage = () => {
-    loadNextPage();
-  };
 
   return (
     <Fragment>
@@ -42,7 +37,7 @@ const PokemonCards = () => {
         text='Select your favorite Pokémon...'
         color={bg}
       >
-        <Icon bg={bg} size='medium' name={type} img={img} />
+        <Icon name={type} img={img} bg={bg} size='medium' />
       </Title>
 
       <ul className={classes.ul}>
@@ -52,24 +47,23 @@ const PokemonCards = () => {
               <Img
                 src={imageUrl}
                 loader={<Skeleton />}
-                alt={name}
                 className={classes.img}
+                alt={name}
               />
             </Link>
           </li>
         ))}
       </ul>
 
-      {moreLoading && <Loading color={bg} />}
-      {!moreLoading && !isFinal && (
-        <Button
-          color={bg}
-          onClick={onClickNextPage}
-          text='Load more cards...'
-        />
-      )}
+      {isLoading && <Loading color={bg} />}
+      <Button
+        color={bg}
+        onClick={loadNextPage}
+        hide={isLoading || isFinal}
+        text='Load more cards...'
+      />
     </Fragment>
   );
 };
 
-export default PokemonCards;
+export default PokemonCardsType;
