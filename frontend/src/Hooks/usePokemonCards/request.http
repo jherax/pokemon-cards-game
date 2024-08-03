@@ -1,0 +1,4 @@
+@baseUrl = {{$dotenv REACT_APP_POKEMON_API_URL}}
+
+GET {{baseUrl}}/cards?types=Lightning&pageSize=3&page=1
+Content-Type: application/json
