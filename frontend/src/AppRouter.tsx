@@ -7,7 +7,7 @@ import {
 
 import NavigationBar from './Components/Navigation/NavigationBar';
 import Error404 from './Pages/Error404';
-import PokemonCard from './Pages/PokemonCard';
+import PokemonCardDetail from './Pages/PokemonCardDetail';
 import PokemonCardsName from './Pages/PokemonCardsName';
 import PokemonCardsType from './Pages/PokemonCardsType';
 import PokemonTypes from './Pages/PokemonTypes';
@@ -33,7 +33,7 @@ const AppRouter = createBrowserRouter(
       <Route path='' element={<PokemonTypes />} />
       <Route path='/name/:name' element={<PokemonCardsName />} />
       <Route path='/:type' element={<PokemonCardsType />} />
-      <Route path='/:type/:id' element={<PokemonCard />} />
+      <Route path='/:type/:id' element={<PokemonCardDetail />} />
       <Route path='/error404' element={<Error404 />} />
     </Route>,
   ),
