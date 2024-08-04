@@ -11,7 +11,7 @@ import Title from '../../Components/Title/Title';
 import usePokemonDetail from '../../Hooks/usePokemonDetail';
 import {useStyles} from './styled';
 
-const PokemonCard = () => {
+const PokemonCardDetail = () => {
   const {id = 'null'} = useParams();
   const {card, resolved} = usePokemonDetail(id);
   const classes = useStyles();
@@ -65,4 +65,4 @@ const PokemonCard = () => {
   );
 };
 
-export default PokemonCard;
+export default PokemonCardDetail;
