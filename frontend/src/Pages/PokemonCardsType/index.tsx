@@ -24,7 +24,7 @@ const PokemonCardsType = () => {
   } = usePokemonCardsType(type as PokeTypesName);
 
   if (!img || type === 'null') {
-    return <Navigate to='/error404' replace={true} />;
+    return <Navigate to='/' replace={true} />;
   }
   if (!cards.length) {
     return <Loading color={bg} middle />;
