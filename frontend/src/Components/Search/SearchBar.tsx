@@ -1,5 +1,5 @@
 import {useCallback, useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import GlobalContext from '../../Providers/GlobalContext';
 import {useStyles} from './SearchBar.styled';
@@ -7,7 +7,8 @@ import {useStyles} from './SearchBar.styled';
 const DEFAULT_TYPE = 'Type';
 
 function SearchBar({color = '#7b8188'}: SearchBarProps) {
-  const {globalState, setGlobalState} = useContext(GlobalContext);
+  const {type: pokeType = DEFAULT_TYPE} = useParams();
+  const {globalState} = useContext(GlobalContext);
   const navigate = useNavigate();
   const classes = useStyles({color});
 
@@ -31,18 +32,21 @@ function SearchBar({color = '#7b8188'}: SearchBarProps) {
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       const pokeName = (e.target as HTMLInputElement).value.trim();
       if (pokeName.length > 2 && e.key === 'Enter') {
-        setGlobalState({cardsByName: {} as never});
         navigate(`/name/${pokeName.toLowerCase()}`);
       }
     },
-    [navigate, setGlobalState],
+    [navigate],
   );
 
   return (
     <div className={classes.container}>
       <span>Search by</span>
       <span>
-        <select className={classes.input} onChange={onChangeType}>
+        <select
+          className={classes.input}
+          onChange={onChangeType}
+          value={pokeType}
+        >
           {options.map((type, i) => (
             <option key={`type-${i}`} value={type}>
               {type}
@@ -53,8 +57,8 @@ function SearchBar({color = '#7b8188'}: SearchBarProps) {
       <span>or </span>
       <span>
         <input
-          className={`${classes.input} ${classes.search}`}
           type='text'
+          className={`${classes.input} ${classes.search}`}
           placeholder='search by name'
           onKeyUp={onPressEnter}
         />

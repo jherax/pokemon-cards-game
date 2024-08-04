@@ -30,6 +30,7 @@ declare global {
     pageSize: number;
     isFinal: boolean;
     isLoading?: boolean;
+    lastPageFetched?: number;
   };
 
   export interface PokeCardsByName extends Omit<PokeCardsByType, 'id'> {

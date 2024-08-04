@@ -1,27 +1,28 @@
-import {useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import {useCallback, useContext, useEffect, useMemo} from 'react';
 
 import GlobalContext from '../../Providers/GlobalContext';
 import getPokemonCardsNameMemo from './service';
 
 const usePokemonCardsName = (pokeName: string) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
-  const [lastPageFetched, setLastPageFetched] = useState(0);
 
+  // checks if the set by matching name exists, if not, initialize it
   const cardsByName: PokeCardsByName = useMemo(() => {
-    return globalState.cardsByName?.matchName
+    return globalState.cardsByName?.matchName === pokeName
       ? globalState.cardsByName
       : {
           matchName: pokeName,
-          title: {} as never,
+          title: globalState.localTypes.Unknown,
           cards: [],
           page: 1,
           pageSize: 10,
           isFinal: false,
+          lastPageFetched: 0,
         };
-  }, [globalState.cardsByName, pokeName]);
+  }, [globalState, pokeName]);
 
   useEffect(() => {
-    const {matchName, cards, page, pageSize} = cardsByName;
+    const {matchName, cards, page, pageSize, lastPageFetched} = cardsByName;
 
     // fetch the current page
     if (page !== lastPageFetched) {
@@ -49,22 +50,20 @@ const usePokemonCardsName = (pokeName: string) => {
             ? [...cards, ...dataCards]
             : cards;
 
-          // update last page fetched
-          setLastPageFetched(page);
           setGlobalState({
             cardsById: updatedCardsById,
             cardsByName: {
               ...cardsByName,
               cards: updatedPokeCards,
-              title: globalState.localTypes.Unknown,
               isFinal: !results || results < pageSize,
+              lastPageFetched: page,
               isLoading: false,
             },
           });
         })
         .catch(console.error);
     }
-  }, [cardsByName, lastPageFetched, globalState, setGlobalState]);
+  }, [cardsByName, globalState, setGlobalState]);
 
   // triggers the next page to fetch
   const loadNextPage = useCallback(() => {
