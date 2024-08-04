@@ -1,30 +1,28 @@
-import {useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import {useCallback, useContext, useEffect, useMemo} from 'react';
 
 import GlobalContext from '../../Providers/GlobalContext';
 import getPokemonCardsTypeMemo from './service';
 
 const usePokemonCardsType = (typeId: PokeTypesName) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
-  const [lastPageFetched, setLastPageFetched] = useState(0);
 
   // checks if the set by type exists, if not, initialize it
   const cardsByType: PokeCardsByType = useMemo(() => {
-    let cards = {...globalState.cardsByType[typeId]};
-    if (!cards.id) {
-      cards = {
-        id: typeId,
-        title: globalState.localTypes[typeId] || {},
-        cards: [],
-        page: 1,
-        pageSize: 10, // max: 1000
-        isFinal: false,
-      };
-    }
-    return cards;
+    return globalState.cardsByType[typeId]?.id
+      ? globalState.cardsByType[typeId]
+      : {
+          id: typeId,
+          title: globalState.localTypes[typeId] || {},
+          cards: [],
+          page: 1,
+          pageSize: 10,
+          isFinal: false,
+          lastPageFetched: 0,
+        };
   }, [globalState, typeId]);
 
   useEffect(() => {
-    const {id, cards, page, pageSize} = cardsByType;
+    const {id, cards, page, pageSize, lastPageFetched} = cardsByType;
 
     // fetch the current page
     if (page !== lastPageFetched) {
@@ -52,8 +50,6 @@ const usePokemonCardsType = (typeId: PokeTypesName) => {
             ? [...cards, ...dataCards]
             : cards;
 
-          // update last page fetched
-          setLastPageFetched(page);
           setGlobalState({
             cardsById: updatedCardsById,
             cardsByType: {
@@ -62,6 +58,7 @@ const usePokemonCardsType = (typeId: PokeTypesName) => {
                 ...cardsByType,
                 cards: updatedPokeCards,
                 isFinal: !results || results < pageSize,
+                lastPageFetched: page,
                 isLoading: false,
               },
             },
@@ -69,7 +66,7 @@ const usePokemonCardsType = (typeId: PokeTypesName) => {
         })
         .catch(console.error);
     }
-  }, [cardsByType, lastPageFetched, globalState, setGlobalState]);
+  }, [cardsByType, globalState, setGlobalState]);
 
   // triggers the next page to fetch
   const loadNextPage = useCallback(() => {

@@ -32,6 +32,7 @@ const PokemonCardsName = () => {
   return (
     <Fragment>
       <Title
+        showSearchBar
         title={`Matched Pokémons`}
         text='Select your favorite Pokémon...'
         color={bg}

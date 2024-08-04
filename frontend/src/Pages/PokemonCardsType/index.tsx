@@ -33,6 +33,7 @@ const PokemonCardsType = () => {
   return (
     <Fragment>
       <Title
+        showSearchBar
         title={`${type} type Pokémon`}
         text='Select your favorite Pokémon...'
         color={bg}
