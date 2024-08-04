@@ -19,7 +19,7 @@ const PokemonTypes = () => {
 
   return (
     <Fragment>
-      <Title text='Select your favorite type...'>
+      <Title text='Select your favorite type...' showSearchBar={true}>
         <img src={PokemonLogo} alt='Pokémon Logo' className={classes.img} />
       </Title>
 
