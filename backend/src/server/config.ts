@@ -20,6 +20,8 @@ const config = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
   },
+  JWT_SECRET: process.env.JWT_SECRET,
+  JWT_EXPIRE: +process.env.JWT_EXPIRE || 86400, // 1 DAY
 };
 
 export default config;

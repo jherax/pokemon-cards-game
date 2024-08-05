@@ -23,8 +23,8 @@
 jest.mock('../src/server/config', () => {
   return {
     app: {
-      host: 'localhost',
-      port: 8888,
+      HOST: 'localhost',
+      PORT: 8888,
       public: {
         images: '/public/img/',
         html: '/public/html/',
@@ -39,5 +39,7 @@ jest.mock('../src/server/config', () => {
       username: 'contoso',
       password: 'costoso',
     },
+    JWT_SECRET: 'my-secret-hash',
+    JWT_EXPIRE: 3600, // 1 hour
   };
 });
