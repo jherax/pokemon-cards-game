@@ -14,7 +14,7 @@ const CardAttacks = ({data}: CardAttackProps) => {
   return (
     <FlexContainer>
       <H2 text={title} />
-      {attacks.map(({boxes: cost, name, text, damage}) => (
+      {attacks.map(({cost, name, text, damage}) => (
         <Fragment key={name}>
           <span className={classes.types}>
             <Boxes boxes={cost || []} />
@@ -41,5 +41,5 @@ export type Attack = {
   name: string;
   damage: string;
   text: string;
-  boxes?: Box[];
+  cost?: Box[];
 };

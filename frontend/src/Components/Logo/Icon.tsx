@@ -23,6 +23,7 @@ const Icon = (props: IconProps) => {
         <Img
           src={img}
           alt={name}
+          title={name}
           className={classes.img}
           loader={
             shouldAddSkeleton && (
