@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:{{$dotenv APP_PORT}}
+
+# To get a valid JWT token, invoke the "/login" endpoint first, 
+# then copy the token from the response to the env variable JWT_TOKEN
+@auth_token = {{$dotenv JWT_TOKEN}}
+
+POST {{baseUrl}}/api/v1/secure
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "payload": "Testing JWT security token"
+}

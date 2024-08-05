@@ -3,14 +3,23 @@
   "noImplicitAdditionalProperties": "throw-on-extras",
   "controllerPathGlobs": ["src/**/*Controller.ts"],
   "spec": {
+    "specVersion": 3,
     "basePath": "/api/v1",
     "outputDirectory": "src/swagger",
-    "specVersion": 3
+    "securityDefinitions": {
+      "jwt": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme. Example: `Authorization: Bearer {token}`"
+      }
+    }
   },
   "routes": {
     "basePath": "/api/v1",
     "routesDir": "src/swagger",
     "middleware": "express",
-    "noWriteIfUnchanged": true
+    "noWriteIfUnchanged": true,
+    "authenticationModule": "src/server/authentication.ts"
   }
 }

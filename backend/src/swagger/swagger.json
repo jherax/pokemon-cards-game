@@ -38,9 +38,38 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"TestSecureResponse": {
+				"properties": {
+					"data": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"data"
+				],
+				"type": "object"
+			},
+			"TestSecureRequest": {
+				"properties": {
+					"payload": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"payload"
+				],
+				"type": "object"
 			}
 		},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"jwt": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT",
+				"description": "JWT Authorization header using the Bearer scheme. Example: `Authorization: Bearer {token}`"
+			}
+		}
 	},
 	"info": {
 		"title": "pokemon-cards-game-backend",
@@ -74,6 +103,40 @@
 				"description": "Generates a new JWT token for the user.",
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/secure": {
+			"post": {
+				"operationId": "Secure",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TestSecureResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Testing JWT authentication.",
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TestSecureRequest"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
