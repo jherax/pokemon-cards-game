@@ -1,11 +1,11 @@
 # Pokemon Card Battle TCG
 
-This is the repository base.
+This is a Monorepo which consists of 2 projects:
 
-This fullstack application consist of:
+1. **Backend**: Express + JWT + tsoa + Postgres (see [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
+1. **Frontend**: React + react-router-dom + [react-jss](https://cssinjs.org/react-jss/) (see [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/frontend))
 
-1. Backend: Express + tsoa, Postgres (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
-1. Frontend: React + [react-jss](https://cssinjs.org/react-jss/) (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/frontend))
+Each project has its own workspace, and its own environment settings (vscode, typescript, eslint, etc.)
 
 You can see the deployed App here:
 

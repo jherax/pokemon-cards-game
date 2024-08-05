@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:{{$dotenv APP_PORT}}
+
+POST {{baseUrl}}/api/v1/login
+Content-Type: application/json
