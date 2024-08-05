@@ -19,7 +19,7 @@ export function transformCard(
   const {nationalPokedexNumber: pokedex} = card;
   const cardDetail: PokeCardDetail = {
     svgImage: `https://veekun.com/dex/media/pokemon/dream-world/${pokedex}.svg`,
-    title: `${card.name} #${pokedex}`,
+    title: `${card.name} #${pokedex || 'N/A'}`,
     subtitle: `${card.supertype} - ${card.subtype}`,
     image: card.imageUrlHiRes,
     types: buildPokeCardTypes(card.hp, pokemonTypes, card.types),
@@ -52,7 +52,7 @@ function buildPokeCardTypes(
   pokemonTypes: GobalState['localTypes'],
   cardTypes: PokeTypesName[] = [],
 ): PokeCardDetailType[] {
-  const text = `HP ${hp || 'Unknown'}`;
+  const text = `HP ${hp || 'N/A'}`;
   return cardTypes.map(name => {
     const {bg, img} = pokemonTypes[name] || pokemonTypes.Unknown;
     return {index: uuidv4(), name, text, img, bg, size: 'small'};
@@ -93,7 +93,7 @@ function buildPokeCardMisc(
   card: PokeCard,
   pokemonTypes: GobalState['localTypes'],
 ): PokeCardDetailMisc[] {
-  const retreatCost = card.retreatCost || [];
+  const retreatCost = card.retreatCost || [''];
   const template: MiscAttr[] = [
     {title: 'Weakness', attr: card.weaknesses || [{value: 'N/A'}]},
     {title: 'Resistance', attr: card.resistances || [{value: 'N/A'}]},
@@ -106,8 +106,9 @@ function buildPokeCardMisc(
   return template.map(({title, attr}) => {
     return {
       title,
-      boxes: attr.map(({type, value: text}) => {
+      boxes: attr.map(({type, value}) => {
         const name = type as PokeTypesName;
+        const text = type ? (value ?? '') : (value ?? 'N/A');
         const {bg, img} = pokemonTypes[name] || pokemonTypes.Unknown;
         return {index: uuidv4(), name, text, img, bg, size: 'xsmall'};
       }),
