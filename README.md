@@ -4,8 +4,8 @@ This is the repository base.
 
 This fullstack application consist of:
 
-1. Backend: Express + tsoa, Postgres (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
-1. Frontend: React + [react-jss](https://cssinjs.org/react-jss/) (See [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/frontend))
+1. **Backend**: Express + JWT + tsoa + Postgres (see [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/backend))
+1. **Frontend**: React + react-router-dom + [react-jss](https://cssinjs.org/react-jss/) (see [README.md](https://github.com/jherax/pokemon-cards-game/tree/master/frontend))
 
 You can see the deployed App here:
 

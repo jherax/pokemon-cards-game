@@ -8,7 +8,7 @@ import express, {type Express} from 'express';
 import connectDb from '../db/postgres';
 import defaultRoutes from '../routes/default';
 import handleErrors from '../routes/errors';
-// import {RegisterRoutes} from '../swagger/routes';
+import {RegisterRoutes} from '../swagger/routes';
 import config from './config';
 import events from './events';
 import logger from './logger';
@@ -34,7 +34,7 @@ export class NodeServer {
 
   private routerConfig() {
     defaultRoutes(this._app);
-    // RegisterRoutes(this._app);
+    RegisterRoutes(this._app);
     handleErrors(this._app);
   }
 
