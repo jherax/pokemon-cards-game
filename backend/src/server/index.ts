@@ -4,6 +4,7 @@ import http, {type Server} from 'node:http';
 import bodyparser from 'body-parser';
 import cors from 'cors';
 import express, {type Express} from 'express';
+import helmet from 'helmet';
 
 import connectDb from '../db/postgres';
 import defaultRoutes from '../routes/default';
@@ -29,7 +30,9 @@ export class NodeServer {
     this._app.use(cors<cors.CorsRequest>());
     this._app.use(bodyparser.json({limit: '1mb'}));
     this._app.use(bodyparser.urlencoded({extended: true}));
-    // Helmet: https://github.com/scottie1984/swagger-ui-express/issues/237#issuecomment-903628171
+    // https://blog.logrocket.com/using-helmet-node-js-secure-application/
+    // https://helmetjs.github.io/#cross-origin-resource-policy
+    this._app.use(helmet());
   }
 
   private routerConfig() {
