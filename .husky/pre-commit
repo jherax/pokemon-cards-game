@@ -6,7 +6,7 @@
 backendfiles=$(git diff --name-only --cached --diff-filter=ACMR | grep -E "^backend/" | cut -c9-)
 if [ ! -z "$backendfiles" ]; then
   cd backend
-  npx prettier --write $backendfiles --ignore-unknown
+  npx prettier --write $backendfiles --ignore-unknown --ignore-path
   git add $backendfiles
   echo "→ Prettier done!"
   cd ..

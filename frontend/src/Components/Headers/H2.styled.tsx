@@ -11,7 +11,8 @@ export const useStyles = createUseStyles({
     fontSize: '1.5rem',
     fontWeight: 300,
     color: (props: StyleProps) => props.color,
-    padding: '0 5px 10px 5px',
+    padding: ({width}: StyleProps) =>
+      width === 'auto' ? '0 10px' : '0 5px 10px 5px',
     margin: '0',
   },
 });

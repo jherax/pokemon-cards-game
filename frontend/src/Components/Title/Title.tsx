@@ -21,7 +21,7 @@ const Title = ({
     <div className={classes.container}>
       {children}
       {title && <H1 text={title} color={color} />}
-      {subtitle && <H2 text={subtitle} />}
+      {subtitle && <H2 text={subtitle} width='auto' />}
       {showText && <Paragraph text={text} />}
       {showSearchBar && <SearchBar />}
       <hr className={classes.hr} />
