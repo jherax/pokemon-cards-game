@@ -1,10 +1,10 @@
+import {useState} from 'react';
 import {Img} from 'react-image';
 import Skeleton from 'react-loading-skeleton';
 import {Navigate, useParams} from 'react-router-dom';
 
-import CardAttacks from '../../Components/Cards/CardAttack';
-import CardBoxIcon from '../../Components/Cards/CardBoxIcon';
-import CardInfo from '../../Components/Cards/CardInfo';
+import Button from '../../Components/Button/Button';
+import CardOptions from '../../Components/CardOptions/CardOptions';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import Title from '../../Components/Title/Title';
@@ -14,6 +14,7 @@ import {useStyles} from './styled';
 const PokemonCardDetail = () => {
   const {id = 'null'} = useParams();
   const {card, resolved} = usePokemonDetail(id);
+  const [hideOptions, setHideOptions] = useState(false);
   const classes = useStyles();
 
   if (!card && !resolved) {
@@ -23,17 +24,8 @@ const PokemonCardDetail = () => {
     return <Navigate to='/error404' replace={true} />;
   }
 
-  const {
-    svgImage,
-    title,
-    subtitle,
-    image,
-    types,
-    ability,
-    attacks,
-    rules,
-    miscellaneous,
-  } = card;
+  const {svgImage, title, subtitle, image, types} = card;
+  const color = '#4e5761';
 
   return (
     <div className={classes.container}>
@@ -53,12 +45,21 @@ const PokemonCardDetail = () => {
       <div className={classes.row}>
         <div className={classes.left}>
           <Img src={image} loader={<Skeleton />} alt={image} />
+          <Button
+            color={color}
+            text='View Options'
+            hide={!hideOptions}
+            onClick={() => setHideOptions(!hideOptions)}
+          />
         </div>
         <div className={classes.right}>
-          {ability && <CardInfo data={ability} />}
-          {rules && <CardInfo data={rules} />}
-          {attacks && <CardAttacks data={attacks} />}
-          <CardBoxIcon data={miscellaneous} />
+          <CardOptions
+            card={card}
+            edit={false}
+            color={color}
+            hideOptions={hideOptions}
+            onClickOption={() => setHideOptions(true)}
+          />
         </div>
       </div>
     </div>
