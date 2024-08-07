@@ -114,9 +114,9 @@ declare global {
   };
 
   export type PokeCardDetail = {
-    svgImage: string;
     title: string;
     subtitle: string;
+    svgImage: string;
     image: string;
     types: PokeCardDetailType[];
     miscellaneous: PokeCardDetailMisc[];

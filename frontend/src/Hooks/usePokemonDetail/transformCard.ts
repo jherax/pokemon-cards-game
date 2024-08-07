@@ -18,9 +18,9 @@ export function transformCard(
   if (!card || typeof card === 'string') return null;
   const {nationalPokedexNumber: pokedex} = card;
   const cardDetail: PokeCardDetail = {
-    svgImage: `https://veekun.com/dex/media/pokemon/dream-world/${pokedex}.svg`,
     title: `${card.name} #${pokedex || 'N/A'}`,
     subtitle: `${card.supertype} - ${card.subtype}`,
+    svgImage: `https://veekun.com/dex/media/pokemon/dream-world/${pokedex}.svg`,
     image: card.imageUrlHiRes,
     types: buildPokeCardTypes(card.hp, pokemonTypes, card.types),
     attacks: buildPokeCardAttacks(card.attacks, pokemonTypes),
@@ -86,7 +86,10 @@ function buildPokeCardAttacks(
 
 type MiscAttr = {
   title: string;
-  attr: Partial<PokeWeakResist>[];
+  attr: Array<{
+    type?: string;
+    value?: string;
+  }>;
 };
 
 function buildPokeCardMisc(

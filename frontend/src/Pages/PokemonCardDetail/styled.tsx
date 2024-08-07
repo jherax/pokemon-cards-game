@@ -5,6 +5,11 @@ export const useStyles = createUseStyles({
     maxWidth: '900px',
     margin: '0 auto',
     padding: '10px',
+    '@media (min-width: 512px) and (max-width: 767px)': {
+      '& > div > h2': {
+        order: -1,
+      },
+    },
   },
   row: {
     display: 'flex',
@@ -22,6 +27,12 @@ export const useStyles = createUseStyles({
     '& img': {
       maxWidth: '400px',
       width: '100%',
+      '& + div': {
+        paddingBottom: '25px',
+        '& button': {
+          width: '98%',
+        },
+      },
     },
   },
   right: {

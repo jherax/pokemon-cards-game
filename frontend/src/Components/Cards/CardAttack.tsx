@@ -1,6 +1,6 @@
 import {Fragment} from 'react/jsx-runtime';
 
-import Boxes, {type Box} from '../Boxes/Boxes';
+import Boxes from '../Boxes/Boxes';
 import FlexContainer from '../Container/FlexContainer';
 import H2 from '../Headers/H2';
 import H3 from '../Headers/H3';
@@ -17,11 +17,11 @@ const CardAttacks = ({data}: CardAttackProps) => {
       {attacks.map(({cost, name, text, damage}) => (
         <Fragment key={name}>
           <span className={classes.types}>
-            <Boxes boxes={cost || []} />
+            <Boxes boxes={cost} />
           </span>
           <H3 text={name} />
           {damage && <span className={classes.damage}>{damage}</span>}
-          {text && <Paragraph text={text} />}
+          <Paragraph text={text} />
         </Fragment>
       ))}
     </FlexContainer>
@@ -33,13 +33,6 @@ export default CardAttacks;
 export type CardAttackProps = Readonly<{
   data: {
     title: string;
-    attacks?: Attack[];
+    attacks?: PokeCardDetailAttack[];
   };
 }>;
-
-export type Attack = {
-  name: string;
-  damage: string;
-  text: string;
-  cost?: Box[];
-};
