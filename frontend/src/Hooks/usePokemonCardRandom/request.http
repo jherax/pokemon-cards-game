@@ -1,0 +1,25 @@
+
+@baseUrl = https://api.pokemontcg.io/v2
+@api_key = {{$dotenv REACT_APP_POKEMON_API_KEY}}
+
+### https://docs.pokemontcg.io/api-reference/cards/search-cards
+
+### Search for all cards that have the type water.
+GET {{baseUrl}}/cards?q=types:water&pageSize=1&page=1&select=id
+Content-Type: application/json
+X-Api-Key: Bearer {{api_key}}
+
+### Search for all cards that have the type Fighting and subtype Basic.
+GET {{baseUrl}}/cards?q=types:Fighting subtypes:Basic&pageSize=1&page=1&select=id
+Content-Type: application/json
+X-Api-Key: Bearer {{api_key}}
+
+### Search for only cards that feature the original 151 pokemon.
+GET {{baseUrl}}/cards?q=nationalPokedexNumbers:[1 TO 151]&pageSize=1&page=1
+Content-Type: application/json
+X-Api-Key: Bearer {{api_key}}
+
+### Get subtypes
+GET {{baseUrl}}/subtypes
+Content-Type: application/json
+X-Api-Key: Bearer {{api_key}}
