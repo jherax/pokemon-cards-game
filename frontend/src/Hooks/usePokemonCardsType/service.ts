@@ -1,6 +1,6 @@
 import {AxiosRequestConfig} from 'axios';
 
-import {pokemonService} from '../../services/axios.pokemon-tcg';
+import {pokemonService} from '../../services/axios.pokemontcg-v1';
 import {memoize} from '../../utils/memoize';
 
 type PokeCardsData = {cards: PokeCard[]};
