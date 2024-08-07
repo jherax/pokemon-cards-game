@@ -1,4 +1,4 @@
-import {pokemonService} from '../../services/axios.pokemon-tcg';
+import {pokemonService} from '../../services/axios.pokemontcg-v1';
 import {memoize} from '../../utils/memoize';
 
 type PokeTypesData = {types: string[]};
