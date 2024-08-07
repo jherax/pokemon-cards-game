@@ -18,6 +18,7 @@ export function transformCard(
   if (!card || typeof card === 'string') return null;
   const {nationalPokedexNumber: pokedex} = card;
   const cardDetail: PokeCardDetail = {
+    id: card.id,
     title: `${card.name} #${pokedex || 'N/A'}`,
     subtitle: `${card.supertype} - ${card.subtype}`,
     svgImage: `https://veekun.com/dex/media/pokemon/dream-world/${pokedex}.svg`,

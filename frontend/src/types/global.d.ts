@@ -20,7 +20,10 @@ declare global {
 
   export type IconSize = 'small' | 'xsmall' | 'medium' | 'big';
 
-  export type PokeTypesName = keyof GobalState['localTypes'];
+  export type PokeTypesName = Exclude<
+    keyof GobalState['localTypes'],
+    'Unknown'
+  >;
 
   export type PokeCardsByType = {
     id: PokeTypesName;
@@ -82,7 +85,7 @@ declare global {
   };
 
   export type PokeWeakResist = {
-    type: string;
+    type: PokeTypesName;
     value: string; // '×2', '-20'
   };
 
@@ -114,6 +117,7 @@ declare global {
   };
 
   export type PokeCardDetail = {
+    id: string;
     title: string;
     subtitle: string;
     svgImage: string;

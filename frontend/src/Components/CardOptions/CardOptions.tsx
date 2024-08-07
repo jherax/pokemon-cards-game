@@ -1,6 +1,7 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Fragment} from 'react/jsx-runtime';
 
+import usePokemonCardRandom from '../../Hooks/usePokemonCardRandom';
 import Button from '../Button/Button';
 import CardAttacks from '../Cards/CardAttack';
 import CardBoxIcon from '../Cards/CardBoxIcon';
@@ -23,6 +24,7 @@ function CardOptions({
 }: CardOptionsProps) {
   const [toggle, setToggle] = useState({...SECTIONS});
   const classes = useStyles({hideOptions, ...toggle});
+  const {randomCard, getRandomCard} = usePokemonCardRandom();
 
   const {ability, attacks, rules, miscellaneous} = card;
   const cloneEdit = edit ? 'Edit' : 'Clone';
@@ -33,14 +35,22 @@ function CardOptions({
     }
   }, [hideOptions]);
 
-  const onDetails = () => {
+  // paint the random card for battle!
+  useEffect(() => {
+    if (randomCard) {
+      console.info(randomCard);
+    }
+  }, [randomCard]);
+
+  const onDetails = useCallback(() => {
     setToggle({...SECTIONS, showDetails: true});
     onClickOption();
-  };
+  }, [onClickOption]);
 
   const onBattle = () => {
     setToggle({...SECTIONS, showBattle: true});
     onClickOption();
+    getRandomCard();
   };
 
   const onEdit = () => {
