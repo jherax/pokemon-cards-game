@@ -1,6 +1,7 @@
 import {Img} from 'react-image';
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
+import {SkeletonTheme} from 'react-loading-skeleton';
 
+import FlexSkeleton from '../Skeleton/FlexSkeleton';
 import {SIZES, useStyles} from './Icon.styled';
 
 const Icon = (props: IconProps) => {
@@ -28,7 +29,7 @@ const Icon = (props: IconProps) => {
           loader={
             shouldAddSkeleton && (
               <SkeletonTheme baseColor={bg}>
-                <Skeleton
+                <FlexSkeleton
                   circle={true}
                   width={SIZES[size]}
                   height={SIZES[size]}

@@ -1,12 +1,12 @@
 import {useState} from 'react';
 import {Img} from 'react-image';
-import Skeleton from 'react-loading-skeleton';
 import {Navigate, useParams} from 'react-router-dom';
 
 import Button from '../../Components/Button/Button';
 import CardOptions from '../../Components/CardOptions/CardOptions';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
+import FlexSkeleton from '../../Components/Skeleton/FlexSkeleton';
 import Title from '../../Components/Title/Title';
 import usePokemonDetail from '../../Hooks/usePokemonDetail';
 import {useStyles} from './styled';
@@ -44,7 +44,7 @@ const PokemonCardDetail = () => {
       </Title>
       <div className={classes.row}>
         <div className={classes.left}>
-          <Img src={image} loader={<Skeleton />} alt={image} />
+          <Img src={image} loader={<FlexSkeleton count={21} />} alt={image} />
           <Button
             color={color}
             text='View Options'

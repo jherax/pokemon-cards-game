@@ -1,11 +1,11 @@
 import {Fragment} from 'react/jsx-runtime';
 import {Img} from 'react-image';
-import Skeleton from 'react-loading-skeleton';
 import {Link, Navigate, useParams} from 'react-router-dom';
 
 import Button from '../../Components/Button/Button';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
+import FlexSkeleton from '../../Components/Skeleton/FlexSkeleton';
 import Title from '../../Components/Title/Title';
 import usePokemonCardsName from '../../Hooks/usePokemonCardsName';
 import {useStyles} from './styled';
@@ -46,7 +46,7 @@ const PokemonCardsName = () => {
             <Link to={`/cards/${id}`}>
               <Img
                 src={imageUrl}
-                loader={<Skeleton />}
+                loader={<FlexSkeleton count={10} />}
                 className={classes.img}
                 alt={name}
               />
