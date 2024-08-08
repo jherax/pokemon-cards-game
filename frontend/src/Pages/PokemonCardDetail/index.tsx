@@ -14,8 +14,8 @@ import {useStyles} from './styled';
 const PokemonCardDetail = () => {
   const {id = 'null'} = useParams();
   const {card, resolved} = usePokemonDetail(id);
-  const [hideOptions, setHideOptions] = useState(false);
-  const classes = useStyles();
+  const [hideOptions, setHideOptions] = useState(true);
+  const classes = useStyles({hideOptions});
 
   if (!card && !resolved) {
     return <Loading middle />;
@@ -45,12 +45,13 @@ const PokemonCardDetail = () => {
       <div className={classes.row}>
         <div className={classes.left}>
           <Img src={image} loader={<FlexSkeleton count={21} />} alt={image} />
-          <Button
-            color={color}
-            text='View Options'
-            hide={!hideOptions}
-            onClick={() => setHideOptions(!hideOptions)}
-          />
+          <div className={classes.leftButtonContainer}>
+            <Button
+              color={color}
+              text='View Options'
+              onClick={() => setHideOptions(!hideOptions)}
+            />
+          </div>
         </div>
         <div className={classes.right}>
           <CardOptions

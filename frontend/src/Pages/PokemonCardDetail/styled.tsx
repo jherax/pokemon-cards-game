@@ -1,5 +1,9 @@
 import {createUseStyles} from 'react-jss';
 
+type StyleProps = {
+  hideOptions: boolean;
+};
+
 export const useStyles = createUseStyles({
   container: {
     maxWidth: '900px',
@@ -27,16 +31,21 @@ export const useStyles = createUseStyles({
     '& img': {
       maxWidth: '400px',
       width: '100%',
-      '& + div': {
-        paddingBottom: '25px',
-        '& button': {
-          width: '98%',
-        },
+    },
+  },
+  leftButtonContainer: {
+    display: ({hideOptions}: StyleProps) => (hideOptions ? 'block' : 'none'),
+    '& > div': {
+      paddingBottom: '0',
+      '& button': {
+        maxWidth: '390px',
+        width: '98%',
       },
     },
   },
   right: {
-    flex: '2 0 0',
+    flex: '1.2 0 0',
+    padding: '1rem',
     textAlign: 'left',
   },
 });
