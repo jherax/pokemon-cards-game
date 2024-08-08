@@ -2,6 +2,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {Fragment} from 'react/jsx-runtime';
 
 import usePokemonCardRandom from '../../Hooks/usePokemonCardRandom';
+import BattleCard from '../Battle/BattleCard';
 import Button from '../Button/Button';
 import CardAttacks from '../Cards/CardAttack';
 import CardBoxIcon from '../Cards/CardBoxIcon';
@@ -22,9 +23,9 @@ function CardOptions({
   hideOptions = false,
   color = '#4e5761',
 }: CardOptionsProps) {
-  const [toggle, setToggle] = useState({...SECTIONS});
-  const classes = useStyles({hideOptions, ...toggle});
+  const [toggle, setToggle] = useState({...SECTIONS, showDetails: true});
   const {randomCard, getRandomCard} = usePokemonCardRandom();
+  const classes = useStyles({hideOptions, ...toggle});
 
   const {ability, attacks, rules, miscellaneous} = card;
   const cloneEdit = edit ? 'Edit' : 'Clone';
@@ -34,13 +35,6 @@ function CardOptions({
       setToggle({...SECTIONS});
     }
   }, [hideOptions]);
-
-  // paint the random card for battle!
-  useEffect(() => {
-    if (randomCard) {
-      console.info(randomCard);
-    }
-  }, [randomCard]);
 
   const onDetails = useCallback(() => {
     setToggle({...SECTIONS, showDetails: true});
@@ -71,12 +65,21 @@ function CardOptions({
         <Button color={color} text={cloneEdit} onClick={onEdit} disabled />
         <Button color={color} text='Delete' onClick={onDelete} hide={!edit} />
       </section>
+
+      {/* https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/svp/42 */}
       <section className={classes.cardDetails}>
         {ability && <CardInfo data={ability} />}
         {rules && <CardInfo data={rules} />}
         {attacks && <CardAttacks data={attacks} />}
         <CardBoxIcon data={miscellaneous} />
       </section>
+
+      <BattleCard
+        playerCardId={card.id}
+        opponentCard={randomCard}
+        onClickVersus={onBattle}
+        show={toggle.showBattle}
+      />
     </Fragment>
   );
 }

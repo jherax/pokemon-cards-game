@@ -3,7 +3,6 @@ import {createUseStyles} from 'react-jss';
 type StyleProps = {
   hideOptions: boolean;
   showDetails: boolean;
-  showBattle: boolean;
   showEdit: boolean;
   showDelete: boolean;
 };
@@ -19,10 +18,18 @@ export const useStyles = createUseStyles({
     '@media (max-width: 767px)': {
       gap: '30px',
     },
+    '@media (min-width: 768px)': {
+      // div: button container
+      '& > div button': {
+        width: '70%',
+      },
+    },
+    // div: button container
     '& > div': {
       padding: '0',
     },
   },
+
   cardDetails: {
     display: ({showDetails}: StyleProps) => (showDetails ? 'block' : 'none'),
   },
