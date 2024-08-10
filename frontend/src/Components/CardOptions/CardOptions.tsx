@@ -68,7 +68,7 @@ function CardOptions({
       <section className={classes.buttons}>
         <Button color={color} text='View' onClick={onDetails} />
         <Button color={color} text='Battle' onClick={onBattle} />
-        <Button color={color} text={cloneEdit} onClick={onEdit} />
+        <Button color={color} text={cloneEdit} onClick={onEdit} disabled />
         <Button color={color} text='Delete' onClick={onDelete} hide={!edit} />
       </section>
       <section className={classes.cardDetails}>

@@ -26,7 +26,11 @@ export const useStyles = createUseStyles({
     '@media (max-width: 767px)': {
       width: '90%',
     },
-    '&:hover': {
+    '&:disabled': {
+      opacity: 0.5,
+      cursor: 'not-allowed',
+    },
+    '&:not(:disabled):hover': {
       background: ({color}: StyleProps) => color,
       color: '#fff',
     },
