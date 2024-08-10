@@ -1,4 +1,5 @@
 /* eslint-disable curly */
+import getNumber from '../../utils/getNumber';
 
 export default function getPlayerAttacks(card: ICard): CardPlayer {
   return {
@@ -40,13 +41,6 @@ type Operations = {
 
 // MODULE INTERNALS
 // ================
-
-const NOT_NUMBER = /\D+|\s+/g;
-
-function getNumber(value?: string): number {
-  const number = value?.replace(NOT_NUMBER, '');
-  return parseFloat(number ?? '0') || 0;
-}
 
 function operationsBuilder(weakResist?: IResistWeak[]) {
   return (weakResist || []).map<Operations>(attr => {

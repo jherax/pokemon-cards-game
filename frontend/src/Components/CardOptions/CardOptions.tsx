@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import CardAttacks from '../Cards/CardAttack';
 import CardBoxIcon from '../Cards/CardBoxIcon';
 import CardInfo from '../Cards/CardInfo';
+import EditCard from '../Edit/EditCard';
 import ShowComponent from '../Toggle/ShowComponent';
 import {useStyles} from './CardOptions.styled';
 
@@ -63,7 +64,7 @@ function CardOptions({
       <section className={classes.buttons}>
         <Button color={color} text='View' onClick={onDetails} />
         <Button color={color} text='Battle' onClick={onBattle} />
-        <Button color={color} text={cloneEdit} onClick={onEdit} disabled />
+        <Button color={color} text={cloneEdit} onClick={onEdit} />
         <Button color={color} text='Delete' onClick={onDelete} hide={!edit} />
       </section>
 
@@ -83,6 +84,10 @@ function CardOptions({
           opponentCard={randomCard}
           onClickVersus={onBattle}
         />
+      </ShowComponent>
+
+      <ShowComponent show={toggle.showEdit}>
+        <EditCard card={cardDetail.card} textColor={color} />
       </ShowComponent>
     </Fragment>
   );
