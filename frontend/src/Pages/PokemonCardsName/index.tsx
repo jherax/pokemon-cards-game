@@ -41,11 +41,11 @@ const PokemonCardsName = () => {
       </Title>
 
       <ul className={classes.ul}>
-        {cards.map(({id, name, imageUrl}) => (
+        {cards.map(({id, name, images}) => (
           <li key={id} className={classes.li}>
             <Link to={`/cards/${id}`}>
               <Img
-                src={imageUrl}
+                src={images.small}
                 loader={<FlexSkeleton count={10} />}
                 className={classes.img}
                 alt={name}

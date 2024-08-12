@@ -2,7 +2,7 @@ import {createUseStyles} from 'react-jss';
 
 export const useStyles = createUseStyles({
   container: {
-    padding: '0', // TODO: add more styles?
+    padding: '0',
   },
   ul: {
     padding: '0.5em 1em',

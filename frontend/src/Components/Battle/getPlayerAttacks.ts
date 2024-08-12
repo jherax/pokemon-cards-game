@@ -1,10 +1,10 @@
 /* eslint-disable curly */
 
-export default function getPlayerAttacks(card: PokeCard | ICard): CardPlayer {
+export default function getPlayerAttacks(card: ICard): CardPlayer {
   return {
     name: card.name,
     hp: getNumber(card.hp),
-    types: card.types as PokeTypesName[],
+    types: card.types,
     weaknesses: operationsBuilder(card.weaknesses),
     resistances: operationsBuilder(card.resistances),
     attacks: (card.attacks || []).map(attack => ({
@@ -20,7 +20,7 @@ export default function getPlayerAttacks(card: PokeCard | ICard): CardPlayer {
 export type CardPlayer = {
   name: string;
   hp: number;
-  types: PokeTypesName[];
+  types: PokemonTypes[];
   weaknesses: Operations[];
   resistances: Operations[];
   attacks: {
@@ -28,12 +28,12 @@ export type CardPlayer = {
     name: string;
     text: string;
     used: boolean;
-    cost: PokeTypesName[];
+    cost: PokemonTypes[];
   }[];
 };
 
 type Operations = {
-  type: PokeTypesName;
+  type: PokemonTypes;
   value: number;
   operate: (attack: number) => number;
 };
@@ -48,7 +48,7 @@ function getNumber(value?: string): number {
   return parseFloat(number ?? '0') || 0;
 }
 
-function operationsBuilder(weakResist?: PokeWeakResist[]) {
+function operationsBuilder(weakResist?: IResistWeak[]) {
   return (weakResist || []).map<Operations>(attr => {
     const operator = attr.value.charAt(0);
     const rawValue = attr.value.slice(1);

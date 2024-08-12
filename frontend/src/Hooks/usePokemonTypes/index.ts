@@ -5,7 +5,7 @@ import getPokemonTypesMemo from './service';
 
 const usePokemonTypes = () => {
   const {globalState} = useContext(GlobalContext);
-  const [pokeTypes, setPokeTypes] = useState<PokemonTypes>([]);
+  const [pokeTypes, setPokeTypes] = useState<PokemonTypesList>([]);
 
   // used a reference to "localTypes" to avoid passing it
   // as a dependency to useEffect, because it doesn't change
@@ -15,8 +15,8 @@ const usePokemonTypes = () => {
     getPokemonTypesMemo()
       .then(dataTypes => {
         const localTypes = refLocalTypes.current;
-        const types: PokemonTypes = dataTypes.map(type => ({
-          ...(localTypes[type as PokeTypesName] || localTypes.Unknown),
+        const types: PokemonTypesList = dataTypes.map(type => ({
+          ...(localTypes[type as PokemonTypes] || localTypes.Unknown),
           name: type,
         }));
 
@@ -31,7 +31,7 @@ const usePokemonTypes = () => {
 
 export default usePokemonTypes;
 
-type PokemonTypes = Array<{
+type PokemonTypesList = Array<{
   name: string;
   img: string;
   bg: string;

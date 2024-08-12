@@ -24,13 +24,13 @@ const PokemonCardDetail = () => {
     return <Navigate to='/error404' replace={true} />;
   }
 
-  const {svgImage, title, subtitle, image, types} = card;
+  const {svgImage, name, title, subtitle, image, types} = card;
   const color = '#4e5761';
 
   return (
     <div className={classes.container}>
       <Title title={title} subtitle={subtitle}>
-        <Icon size='medium' name={svgImage} img={svgImage} />
+        <Icon size='medium' name={name} img={svgImage} />
         {types.map(({index, name, text, img, bg, size}) => (
           <Icon
             key={index}

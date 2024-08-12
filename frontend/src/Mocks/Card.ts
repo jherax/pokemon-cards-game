@@ -1,160 +1,106 @@
 const CARD = {
-  card: {
-    svgImage: 'https://veekun.com/dex/media/pokemon/dream-world/301.svg',
-    title: 'Delcatty ex #301',
-    subtitle: 'Pokémon - EX',
-    image: 'https://images.pokemontcg.io/ex14/91_hires.png',
-    types: [
+  data: {
+    id: 'ex13-1',
+    name: 'Armaldo δ',
+    supertype: 'Pokémon',
+    subtypes: ['Stage 2'],
+    hp: '110',
+    types: ['Fighting', 'Metal'],
+    evolvesFrom: 'Anorith',
+    rules: ['This Pokémon is both Fighting Metal type.'],
+    attacks: [
       {
-        index: 'a64d8490-2600-402b-80c6-3376fdd68c60',
-        name: 'Colorless',
-        text: 'HP 90',
-        img: '/static/media/Colorless.8f2a7aaa.svg',
-        bg: '#A0A29F',
-        size: 'small',
+        name: 'Delta Edge',
+        cost: ['Metal', 'Colorless'],
+        convertedEnergyCost: 2,
+        damage: '70',
+        text: "If you have any Supporter cards in play, this attack's base damage is 20 instead of 70.",
+      },
+      {
+        name: 'Fossil Charge',
+        cost: ['Fighting', 'Colorless', 'Colorless'],
+        convertedEnergyCost: 3,
+        damage: '50',
+        text: "You may discard a Claw Fossil, Mysterious Fossil, Root Fossil, or Holon Fossil from your hand. If you do, choose 1 of your opponent's Benched Pokémon and do 30 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)",
       },
     ],
-    ability: {
-      title: 'Constrain',
-      type: 'Poké-Power',
-      color: '#D3425F',
-      text: [
-        "Once during your turn (before your attack), you may use this power. Each player discards cards until that player has 6 cards in his or her hand. (You discard first.) This power can't be used if Delcatty ex is affected by a Special Condition.",
-      ],
-    },
-    rules: {
-      title: 'Rules',
-      text: [
-        'When Pokémon-ex has been Knocked Out, your opponent takes 2 Prize cards.',
-      ],
-    },
-    attacks: {
-      title: 'Attacks',
-      attacks: [
-        {
-          cost: [
-            {
-              index: '9e7a12aa-2ade-47be-84fa-ebc85e690df2',
-              name: 'Colorless',
-              img: '/static/media/Colorless.8f2a7aaa.svg',
-              bg: '#A0A29F',
-              size: 'small',
-            },
-          ],
-          name: 'Upstream',
-          text: 'Search your discard pile for all Energy cards. This attack does 10 damage times the number of Energy cards you find there. Show them to your opponent, and put them on top of your deck. Shuffle your deck afterward.',
-          damage: '| 10×',
-          convertedEnergyCost: 1,
-        },
-        {
-          cost: [
-            {
-              index: 'fe481591-0554-4f08-ae8c-959c82c37280',
-              name: 'Colorless',
-              img: '/static/media/Colorless.8f2a7aaa.svg',
-              bg: '#A0A29F',
-              size: 'small',
-            },
-            {
-              index: '78679651-556c-4795-80c4-fb945ed984ba',
-              name: 'Colorless',
-              img: '/static/media/Colorless.8f2a7aaa.svg',
-              bg: '#A0A29F',
-              size: 'small',
-            },
-            {
-              index: 'b7a50c9a-e34f-4b56-818f-0eefd00cf4a2',
-              name: 'Colorless',
-              img: '/static/media/Colorless.8f2a7aaa.svg',
-              bg: '#A0A29F',
-              size: 'small',
-            },
-          ],
-          name: 'Tail Slap',
-          text: '',
-          damage: '| 60',
-          convertedEnergyCost: 3,
-        },
-      ],
-    },
-    miscellaneous: [
+    weaknesses: [
       {
-        title: 'Weakness',
-        boxes: [
-          {
-            index: '985bb163-ab3d-41c3-8e02-182c0474374c',
-            name: 'Fighting',
-            text: '×2',
-            img: '/static/media/Fighting.8ce4fa81.svg',
-            bg: '#8e431b',
-            size: 'xsmall',
-          },
-        ],
-      },
-      {
-        title: 'Resistance',
-        boxes: [
-          {
-            index: '501d0a51-70d6-478e-8681-b32c3304d258',
-            text: 'N/A',
-            img: null,
-            bg: '#434343',
-            size: 'xsmall',
-          },
-        ],
-      },
-      {
-        title: 'Retreat Cost',
-        boxes: [
-          {
-            index: '0db6b74e-7609-4dc9-8b5c-03de9bedd597',
-            text: 'N/A',
-            img: null,
-            bg: '#434343',
-            size: 'xsmall',
-          },
-        ],
-      },
-      {
-        title: 'Artist',
-        boxes: [
-          {
-            index: '76ca81b6-a6d3-484b-8327-b328e55f1e7d',
-            name: '',
-            text: 'Shizurow',
-            img: null,
-            bg: '#434343',
-            size: 'xsmall',
-          },
-        ],
-      },
-      {
-        title: 'Rarity',
-        boxes: [
-          {
-            index: 'ca36335e-ab19-4cf7-8875-d2fe839c7cdb',
-            name: '',
-            text: 'Rare Holo EX',
-            img: null,
-            bg: '#434343',
-            size: 'xsmall',
-          },
-        ],
-      },
-      {
-        title: 'Set',
-        boxes: [
-          {
-            index: '01dc03a5-c07b-49c2-81d1-804288c2153b',
-            name: '',
-            text: 'Crystal Guardians',
-            img: null,
-            bg: '#434343',
-            size: 'xsmall',
-          },
-        ],
+        type: 'Grass',
+        value: '×2',
       },
     ],
+    retreatCost: ['Colorless', 'Colorless', 'Colorless'],
+    convertedRetreatCost: 3,
+    set: {
+      id: 'ex13',
+      name: 'Holon Phantoms',
+      series: 'EX',
+      printedTotal: 110,
+      total: 111,
+      legalities: {
+        unlimited: 'Legal',
+      },
+      ptcgoCode: 'HP',
+      releaseDate: '2006/05/01',
+      updatedAt: '2018/03/04 10:35:00',
+      images: {
+        symbol: 'https://images.pokemontcg.io/ex13/symbol.png',
+        logo: 'https://images.pokemontcg.io/ex13/logo.png',
+      },
+    },
+    number: '1',
+    artist: 'Masakazu Fukuda',
+    rarity: 'Rare Holo',
+    nationalPokedexNumbers: [348],
+    legalities: {
+      unlimited: 'Legal',
+    },
+    images: {
+      small: 'https://images.pokemontcg.io/ex13/1.png',
+      large: 'https://images.pokemontcg.io/ex13/1_hires.png',
+    },
+    tcgplayer: {
+      url: 'https://prices.pokemontcg.io/tcgplayer/ex13-1',
+      updatedAt: '2024/08/15',
+      prices: {
+        holofoil: {
+          low: 5.49,
+          mid: 8.5,
+          high: 11.89,
+          market: 8.43,
+          directLow: 5.82,
+        },
+        reverseHolofoil: {
+          low: 4.5,
+          mid: 12.74,
+          high: 15.12,
+          market: 11.2,
+          directLow: null,
+        },
+      },
+    },
+    cardmarket: {
+      url: 'https://prices.pokemontcg.io/cardmarket/ex13-1',
+      updatedAt: '2024/08/15',
+      prices: {
+        averageSellPrice: 12.12,
+        lowPrice: 1.5,
+        trendPrice: 8.52,
+        germanProLow: 0.0,
+        suggestedPrice: 0.0,
+        reverseHoloSell: 40.75,
+        reverseHoloLow: 3.0,
+        reverseHoloTrend: 20.33,
+        lowPriceExPlus: 4.5,
+        avg1: 9.99,
+        avg7: 10.66,
+        avg30: 7.81,
+        reverseHoloAvg1: 10.0,
+        reverseHoloAvg7: 28.38,
+        reverseHoloAvg30: 15.23,
+      },
+    },
   },
 };
 

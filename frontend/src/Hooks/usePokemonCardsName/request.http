@@ -1,4 +1,8 @@
 @baseUrl = {{$dotenv REACT_APP_POKEMON_API_URL}}
+@api_key = {{$dotenv REACT_APP_POKEMON_API_KEY}}
 
-GET {{baseUrl}}/cards?name=Jolteon&pageSize=3&page=1
+### https://docs.pokemontcg.io/api-reference/cards/search-cards
+
+GET {{baseUrl}}/cards?q=name:Jolteon*&pageSize=3&page=1
 Content-Type: application/json
+X-Api-Key: Bearer {{api_key}}

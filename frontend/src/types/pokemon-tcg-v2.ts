@@ -6,10 +6,10 @@ declare global {
   export interface ICard {
     id: string;
     name: string;
+    types: PokemonTypes[];
     supertype: string;
     subtypes: string[];
-    hp?: string;
-    types?: PokeTypesName[];
+    hp: string; // Number with symbols
     evolvesFrom?: string;
     evolvesTo?: string[];
     rules?: string[];
@@ -18,7 +18,7 @@ declare global {
     attacks?: IAttack[];
     weaknesses?: IResistWeak[];
     resistances?: IResistWeak[];
-    retreatCost?: PokeTypesName[];
+    retreatCost?: PokemonTypes[];
     convertedRetreatCost?: number;
     set: ISet;
     number: string;
@@ -40,7 +40,7 @@ declare global {
   }
 
   export interface IAttack {
-    cost: PokeTypesName[];
+    cost: PokemonTypes[];
     name: string;
     text: string;
     damage: string; // '10+', '30×', '| 60', '| 10×'
@@ -48,7 +48,7 @@ declare global {
   }
 
   export interface IResistWeak {
-    type: PokeTypesName;
+    type: PokemonTypes;
     value: string; // '×2', '-20'
   }
 

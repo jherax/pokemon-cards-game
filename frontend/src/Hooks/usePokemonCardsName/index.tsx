@@ -28,7 +28,7 @@ const usePokemonCardsName = (pokeName: string) => {
     if (page !== lastPageFetched) {
       getPokemonCardsNameMemo(matchName, pageSize, page)
         .then(dataCards => {
-          let newCardsById: Record<string, PokeCard> = {};
+          let newCardsById: Record<string, ICard> = {};
 
           newCardsById = dataCards.reduce((pokeCards, card) => {
             // adds only cards not present in globalState

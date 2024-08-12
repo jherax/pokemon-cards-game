@@ -1,144 +1,67 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <title>README</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css"
-    />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <style>
-      pre > code.hljs {
-        padding: var(--spacing);
-        color: rgb(162, 175, 185);
-      }
-      blockquote p {
-        margin-bottom: 0;
-      }
-    </style>
-    <script>
-      hljs.highlightAll();
-    </script>
+    <style> pre>code.hljs {padding: var(--spacing); color: rgb(162, 175, 185);} blockquote p {margin-bottom: 0;}</style>
+    <script>hljs.highlightAll();</script>
   </head>
   <body>
     <main>
-      <h1 id="pokemoncardbattletcg">Pokemon Card Battle TCG</h1>
-      <p>
-        This project was bootstrapped with
-        <a href="https://github.com/facebook/create-react-app"
-          >Create React App</a
-        >.
-      </p>
-      <p>You can see the deployed App here:</p>
-      <ul>
-        <li>
-          <a href="https://pokemon-cards-game-frontend.vercel.app/"
-            >pokemon-cards-game-frontend.vercel.app</a
-          >
-        </li>
-      </ul>
-      <h2 id="environment">Environment</h2>
-      <p>
-        This application depends on some environment variables. Once you have
-        cloned the repository, go to the
-        <code class="prettyprint">frontend</code> directory and create a
-        <code class="prettyprint">.env</code> file with the following keys:
-      </p>
-      <pre
-        class="prettyprint linenums"
-      ><code class="bash language-bash">REACT_APP_POKEMON_API_URL=https://api.pokemontcg.io/v1/
+    <h1 id="pokemoncardbattletcg">Pokemon Card Battle TCG</h1>
+<p>This project was bootstrapped with
+<a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
+<p>You can see the deployed App here:</p>
+<ul>
+<li><a href="https://pokemon-cards-game-frontend.vercel.app/">pokemon-cards-game-frontend.vercel.app</a></li>
+</ul>
+<h2 id="environment">Environment</h2>
+<p>This application depends on some environment variables. Once you have cloned the
+repository, go to the <code class="prettyprint">frontend</code> directory and create a <code class="prettyprint">.env</code> file with the
+following keys:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">REACT_APP_POKEMON_API_URL=https://api.pokemontcg.io/v2/
 </code></pre>
-      <h2 id="scripts">Scripts</h2>
-      <p>
-        In the <code class="prettyprint">frontend</code> directory, the
-        following scripts are available:
-      </p>
-      <h3 id="frontendscripts">Frontend scripts</h3>
-      <ul>
-        <li>
-          <p>
-            <code class="prettyprint">npm start</code> Runs the app in the
-            development mode. Open
-            <a href="http://localhost:3000">http://localhost:3000</a> to view it
-            in the browser. The page will reload if you make edits. You will
-            also see any lint errors in the console.
-          </p>
-        </li>
-        <li>
-          <p>
-            <code class="prettyprint">npm test</code> Launches the test runner
-            in the interactive watch mode. See the section about
-            <a
-              href="https://facebook.github.io/create-react-app/docs/running-tests"
-              >running tests</a
-            >
-            for more information.
-          </p>
-        </li>
-        <li>
-          <p>
-            <code class="prettyprint">npm run build</code> Builds the app for
-            production to the <code class="prettyprint">build</code> folder. It
-            correctly bundles React in production mode and optimizes the build
-            for best performance. The build is minified and the filenames
-            include the hashes and
-            <em>Your app is ready to be deployed!</em> (See the
-            <a
-              href="https://facebook.github.io/create-react-app/docs/deployment"
-              >deployment</a
-            >
-            section for more information).
-          </p>
-        </li>
-        <li>
-          <p><code class="prettyprint">npm run eject</code></p>
-          <p>
-            <strong
-              >Note: this is a one-way operation. Once you
-              <code class="prettyprint">eject</code>, you can’t go back!</strong
-            >
-          </p>
-          <p>
-            If you aren’t satisfied with the build tool and configuration
-            choices, you can <code class="prettyprint">eject</code> at any time.
-            This command will remove the single build dependency from your
-            project.
-          </p>
-          <p>
-            Instead, it will copy all the configuration files and the transitive
-            dependencies (webpack, Babel, ESLint, etc) right into your project
-            so you have full control over them. All of the commands except
-            <code class="prettyprint">eject</code> will still work, but they
-            will point to the copied scripts so you can tweak them. At this
-            point you’re on your own.
-          </p>
-          <p>
-            You don’t have to ever use <code class="prettyprint">eject</code>.
-            The curated feature set is suitable for small and middle
-            deployments, and you shouldn’t feel obligated to use this feature.
-            However we understand that this tool wouldn’t be useful if you
-            couldn’t customize it when you are ready for it.
-          </p>
-        </li>
-      </ul>
-      <h2 id="learnmore">Learn More</h2>
-      <p>
-        You can learn more in the
-        <a
-          href="https://facebook.github.io/create-react-app/docs/getting-started"
-          >Create React App documentation</a
-        >.
-      </p>
-      <p>
-        To learn React, check out the
-        <a href="https://reactjs.org/">React documentation</a>.
-      </p>
+<h2 id="scripts">Scripts</h2>
+<p>In the <code class="prettyprint">frontend</code> directory, the following scripts are available:</p>
+<h3 id="frontendscripts">Frontend scripts</h3>
+<ul>
+<li><p> <code class="prettyprint">npm start</code> Runs the app in the development mode. Open
+<a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser. The
+page will reload if you make edits. You will also see any lint errors in the
+console.</p></li>
+<li><p> <code class="prettyprint">npm test</code> Launches the test runner in the interactive watch mode. See the
+section about
+<a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a>
+for more information.</p></li>
+<li><p> <code class="prettyprint">npm run build</code> Builds the app for production to the <code class="prettyprint">build</code> folder. It
+correctly bundles React in production mode and optimizes the build for best
+performance. The build is minified and the filenames include the hashes and
+<em>Your app is ready to be deployed!</em> (See the
+<a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a>
+section for more information).</p></li>
+<li><p> <code class="prettyprint">npm run eject</code></p>
+<p><strong>Note: this is a one-way operation. Once you <code class="prettyprint">eject</code>, you can’t go back!</strong></p>
+<p>If you aren’t satisfied with the build tool and configuration choices, you can <code class="prettyprint">eject</code> at any time. This command will remove the single build dependency from
+your project.</p>
+<p>Instead, it will copy all the configuration files and the transitive
+dependencies (webpack, Babel, ESLint, etc) right into your project so you have
+full control over them. All of the commands except <code class="prettyprint">eject</code> will still work,
+but they will point to the copied scripts so you can tweak them. At this point
+you’re on your own.</p>
+<p>You don’t have to ever use <code class="prettyprint">eject</code>. The curated feature set is suitable for
+small and middle deployments, and you shouldn’t feel obligated to use this
+feature. However we understand that this tool wouldn’t be useful if you
+couldn’t customize it when you are ready for it.</p></li>
+</ul>
+<h2 id="learnmore">Learn More</h2>
+<p>You can learn more in the
+<a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
+<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
     </main>
   </body>
 </html>

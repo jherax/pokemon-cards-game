@@ -14,7 +14,7 @@ repository, go to the `frontend` directory and create a `.env` file with the
 following keys:
 
 ```bash
-REACT_APP_POKEMON_API_URL=https://api.pokemontcg.io/v1/
+REACT_APP_POKEMON_API_URL=https://api.pokemontcg.io/v2/
 ```
 
 ## Scripts

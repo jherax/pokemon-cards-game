@@ -1,7 +1,7 @@
 import {randomInt} from '../../utils/randomizer';
 import getPlayerAttacks from './getPlayerAttacks';
 
-export default function selectPlayersOrder(players: Array<PokeCard | ICard>) {
+export default function selectPlayersOrder(players: Array<ICard>) {
   const challenger1 = getPlayerAttacks(players[0]);
   const challenger2 = getPlayerAttacks(players[1]);
 

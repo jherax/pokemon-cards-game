@@ -47,5 +47,13 @@ For a new release, just run
 npm run release
 ```
 
+If you want to bump the major version (SEMVER), you can create a commit by
+adding the suffix `!` to the commit type, for example:
+`git commit -m "feat!: new breaking changes`, or simply run:
+
+```bash
+npm run release -- --release-as major
+```
+
 For more details, please visit the Github site
 [standard-version](https://github.com/conventional-changelog/standard-version)

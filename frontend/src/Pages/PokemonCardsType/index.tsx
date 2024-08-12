@@ -21,7 +21,7 @@ const PokemonCardsType = () => {
     isFinal,
     isLoading,
     loadNextPage,
-  } = usePokemonCardsType(type as PokeTypesName);
+  } = usePokemonCardsType(type as PokemonTypes);
 
   if (!img || type === 'null') {
     return <Navigate to='/' replace={true} />;
@@ -42,11 +42,11 @@ const PokemonCardsType = () => {
       </Title>
 
       <ul className={classes.ul}>
-        {cards.map(({id, name, imageUrl}) => (
+        {cards.map(({id, name, images}) => (
           <li key={id} className={classes.li}>
             <Link to={`${pathname}/${id}`}>
               <Img
-                src={imageUrl}
+                src={images.small}
                 loader={<FlexSkeleton count={10} />}
                 className={classes.img}
                 alt={name}

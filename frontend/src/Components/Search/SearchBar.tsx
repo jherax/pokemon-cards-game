@@ -14,7 +14,7 @@ function SearchBar({color = '#7b8188'}: SearchBarProps) {
 
   const options = [DEFAULT_TYPE].concat(
     Object.keys(globalState.localTypes).filter(
-      key => key !== ('Unknown' as PokeTypesName),
+      key => key !== ('Unknown' as PokemonTypes),
     ),
   );
 

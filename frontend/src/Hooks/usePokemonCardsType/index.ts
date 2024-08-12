@@ -3,7 +3,7 @@ import {useCallback, useContext, useEffect, useMemo} from 'react';
 import GlobalContext from '../../Providers/GlobalContext';
 import getPokemonCardsTypeMemo from './service';
 
-const usePokemonCardsType = (typeId: PokeTypesName) => {
+const usePokemonCardsType = (typeId: PokemonTypes) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
 
   // checks if the set by type exists, if not, initialize it
@@ -28,7 +28,7 @@ const usePokemonCardsType = (typeId: PokeTypesName) => {
     if (page !== lastPageFetched) {
       getPokemonCardsTypeMemo(id, pageSize, page)
         .then(dataCards => {
-          let newCardsById: Record<string, PokeCard> = {};
+          let newCardsById: Record<string, ICard> = {};
 
           newCardsById = dataCards.reduce((pokeCards, card) => {
             // adds only cards not present in globalState
@@ -54,7 +54,7 @@ const usePokemonCardsType = (typeId: PokeTypesName) => {
             cardsById: updatedCardsById,
             cardsByType: {
               ...globalState.cardsByType,
-              [id as PokeTypesName]: {
+              [id as PokemonTypes]: {
                 ...cardsByType,
                 cards: updatedPokeCards,
                 isFinal: !results || results < pageSize,

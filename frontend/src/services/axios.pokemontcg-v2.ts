@@ -2,8 +2,6 @@ import Axios, {type AxiosRequestConfig} from 'axios';
 
 import config from '../config/app.cfg';
 
-const POKEMON_API_URL = 'https://api.pokemontcg.io/v2';
-
 // This Header is required only for PROD environments
 const instanceConfig: AxiosRequestConfig = config.POKEMON_API_KEY
   ? {
@@ -14,7 +12,7 @@ const instanceConfig: AxiosRequestConfig = config.POKEMON_API_KEY
   : {};
 
 const instance = Axios.create({
-  baseURL: POKEMON_API_URL,
+  baseURL: config.POKEMON_API_URL,
   ...instanceConfig,
 });
 
