@@ -46,7 +46,7 @@ declare global {
   }
 
   export type PokeCardDetail = {
-    id: string;
+    card: ICard;
     name: string;
     title: string;
     subtitle: string;

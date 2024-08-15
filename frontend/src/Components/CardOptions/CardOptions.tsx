@@ -17,17 +17,17 @@ const SECTIONS = {
 };
 
 function CardOptions({
-  card,
   edit,
+  cardDetail,
   onClickOption,
   hideOptions = false,
-  color = '#4e5761',
+  textColor: color = '#4e5761',
 }: CardOptionsProps) {
   const [toggle, setToggle] = useState({...SECTIONS, showDetails: true});
   const {randomCard, getRandomCard} = usePokemonCardRandom();
   const classes = useStyles({hideOptions, ...toggle});
 
-  const {ability, attacks, rules, miscellaneous} = card;
+  const {ability, attacks, rules, miscellaneous} = cardDetail;
   const cloneEdit = edit ? 'Edit' : 'Clone';
 
   useEffect(() => {
@@ -75,10 +75,10 @@ function CardOptions({
       </section>
 
       <BattleCard
-        playerCardId={card.id}
+        show={toggle.showBattle}
+        playerCard={cardDetail.card}
         opponentCard={randomCard}
         onClickVersus={onBattle}
-        show={toggle.showBattle}
       />
     </Fragment>
   );
@@ -87,9 +87,9 @@ function CardOptions({
 export default CardOptions;
 
 export type CardOptionsProps = Readonly<{
-  card: PokeCardDetail;
   edit: boolean;
+  cardDetail: PokeCardDetail;
   onClickOption: () => void;
   hideOptions?: boolean;
-  color?: string;
+  textColor?: string;
 }>;

@@ -19,7 +19,7 @@ export function transformCard(
   const {nationalPokedexNumbers: pdn = []} = card;
   const pokedex = pdn.find(Boolean);
   const cardDetail: PokeCardDetail = {
-    id: card.id,
+    card: {...card},
     name: card.name,
     title: `${card.name} #${pokedex ?? 'N/A'}`,
     subtitle: `${card.supertype} «${card.subtypes.join(', ')}»`,

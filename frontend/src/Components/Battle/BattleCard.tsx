@@ -1,9 +1,8 @@
 /* eslint-disable curly */
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Img} from 'react-image';
 
 import versusIcon from '../../img/vs-icon.png';
-import GlobalContext from '../../Providers/GlobalContext';
 import FlexSkeleton from '../Skeleton/FlexSkeleton';
 import {useStyles} from './BattleCard.styled';
 import {playTurn} from './playTurn';
@@ -11,22 +10,21 @@ import selectPlayersOrder from './selectPlayersOrder';
 import validatePlayerHP from './validatePlayerHP';
 
 function BattleCard({
-  playerCardId,
+  show,
+  playerCard,
   opponentCard,
-  show = false,
   onClickVersus,
 }: BattleCardProps) {
-  const {globalState} = useContext(GlobalContext);
   const [moves, setMoves] = useState<string[]>([]);
   const loading = opponentCard == null; // runs only the first time
   const classes = useStyles({display: show, loading});
-  const playerCard = useRef(globalState.cardsById[playerCardId]);
+  const playerCardRef = useRef(playerCard);
 
   useEffect(() => {
     if (opponentCard) {
       const playersMoves: string[] = [];
       const [player1, player2] = selectPlayersOrder([
-        playerCard.current,
+        playerCardRef.current,
         opponentCard,
       ]);
 
@@ -39,17 +37,15 @@ function BattleCard({
         player1.attacks.sort((a, b) => b.damage - a.damage);
         player2.attacks.sort((a, b) => b.damage - a.damage);
 
-        let played: boolean;
+        let played: boolean = true;
         // performs attacks until a player's HP is consumed
-        while (player1.hp > 0 && player2.hp > 0) {
+        while (played && player1.hp > 0 && player2.hp > 0) {
           // player1 performs the first attack
           played = playTurn(player1, player2, playersMoves);
-          if (!played) break;
 
-          if (player2.hp > 0) {
+          if (played && player2.hp > 0) {
             // player1 did not kill player2, then player2 attacks back
             played = playTurn(player2, player1, playersMoves);
-            if (!played) break;
           }
         }
 
@@ -92,8 +88,8 @@ function BattleCard({
 export default BattleCard;
 
 export type BattleCardProps = Readonly<{
-  playerCardId: string;
+  show: boolean;
+  playerCard: ICard;
   opponentCard?: ICard;
   onClickVersus?: () => void;
-  show?: boolean;
 }>;

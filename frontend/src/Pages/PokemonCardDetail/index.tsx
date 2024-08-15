@@ -13,19 +13,19 @@ import {useStyles} from './styled';
 
 const PokemonCardDetail = () => {
   const {id = 'null'} = useParams();
-  const {card, resolved} = usePokemonDetail(id);
+  const {cardDetail, resolved} = usePokemonDetail(id);
   const [hideOptions, setHideOptions] = useState(true);
   const classes = useStyles({hideOptions});
 
-  if (!card && !resolved) {
+  if (!cardDetail && !resolved) {
     return <Loading middle />;
   }
-  if (!card && resolved) {
+  if (!cardDetail && resolved) {
     return <Navigate to='/error404' replace={true} />;
   }
 
-  const {svgImage, name, title, subtitle, image, types} = card;
-  const color = '#4e5761';
+  const {svgImage, name, title, subtitle, image, types} = cardDetail;
+  const textColor = '#4e5761';
 
   return (
     <div className={classes.container}>
@@ -47,7 +47,7 @@ const PokemonCardDetail = () => {
           <Img src={image} loader={<FlexSkeleton count={21} />} alt={image} />
           <div className={classes.leftButtonContainer}>
             <Button
-              color={color}
+              color={textColor}
               text='View Options'
               onClick={() => setHideOptions(!hideOptions)}
             />
@@ -55,9 +55,9 @@ const PokemonCardDetail = () => {
         </div>
         <div className={classes.right}>
           <CardOptions
-            card={card}
             edit={false}
-            color={color}
+            cardDetail={cardDetail}
+            textColor={textColor}
             hideOptions={hideOptions}
             onClickOption={() => setHideOptions(true)}
           />

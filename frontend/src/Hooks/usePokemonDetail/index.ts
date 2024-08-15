@@ -42,7 +42,7 @@ const usePokemonDetail = (cardId: string) => {
     }
   }, [cardId, resolved, globalState, setGlobalState]);
 
-  return {card: cardDetail as PokeCardDetail, resolved};
+  return {cardDetail: cardDetail as PokeCardDetail, resolved};
 };
 
 export default usePokemonDetail;
