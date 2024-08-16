@@ -57,9 +57,9 @@ function operationsBuilder(weakResist?: IResistWeak[]) {
       value: value,
       type: attr.type,
       operate: (attack: number) => {
-        if (operator === '×') return attack * value;
-        if (operator === '-') return attack - value;
-        return attack + value;
+        if (operator === '×') return Math.max(0, attack * value);
+        if (operator === '-') return Math.max(0, attack - value);
+        return Math.max(0, attack + value);
       },
     };
   });
