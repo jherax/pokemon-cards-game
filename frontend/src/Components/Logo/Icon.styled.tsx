@@ -17,6 +17,7 @@ export const useStyles = createUseStyles({
   container: {
     display: 'inline-block',
     color: ({bg}: StyleProps) => bg,
+    verticalAlign: 'middle',
     textAlign: 'center',
   },
   icon: {
@@ -33,7 +34,6 @@ export const useStyles = createUseStyles({
     '&:hover': {
       filter: 'saturate(200%)',
       transform: 'scale(1.1)',
-      cursor: 'pointer',
     },
   },
   img: {

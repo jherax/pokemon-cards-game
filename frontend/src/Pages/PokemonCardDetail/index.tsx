@@ -30,15 +30,15 @@ const PokemonCardDetail = () => {
   return (
     <div className={classes.container}>
       <Title title={title} subtitle={subtitle}>
-        <Icon size='medium' name={name} img={svgImage} />
+        <Icon name={name} img={svgImage} size='medium' boxShadow />
         {types.map(({index, name, text, img, bg, size}) => (
           <Icon
             key={index}
             name={name}
             text={text}
+            size={size}
             img={img}
             bg={bg}
-            size={size}
           />
         ))}
       </Title>

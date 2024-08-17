@@ -1,8 +1,8 @@
 import {useStyles} from './Button.styled';
 
-const Button = (props: ButtonProps) => {
-  const {text, onClick, color = '#ed1d25', hide = false} = props;
-  const classes = useStyles({color, hide});
+const Button = ({text, onClick, ...props}: ButtonProps) => {
+  const {color = '#ed1d25', hide = false, align = 'center'} = props;
+  const classes = useStyles({color, hide, align});
   const disabled = props.disabled || false;
 
   return (
@@ -22,4 +22,5 @@ export type ButtonProps = Readonly<{
   disabled?: boolean;
   color?: string;
   hide?: boolean;
+  align?: 'center' | 'left' | 'right';
 }>;

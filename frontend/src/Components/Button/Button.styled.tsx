@@ -3,13 +3,14 @@ import {createUseStyles} from 'react-jss';
 type StyleProps = {
   color: string;
   hide: boolean;
+  align: 'center' | 'left' | 'right';
 };
 
 export const useStyles = createUseStyles({
   container: {
     paddingTop: '25px',
     paddingBottom: '50px',
-    textAlign: 'center',
+    textAlign: ({align}: StyleProps) => align,
     visibility: ({hide}: StyleProps) => (hide ? 'hidden' : 'visible'),
   },
   button: {

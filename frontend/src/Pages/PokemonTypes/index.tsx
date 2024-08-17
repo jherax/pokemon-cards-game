@@ -39,7 +39,6 @@ const PokemonTypes = () => {
                 key={name}
                 text={name}
                 skeleton
-                hover
               />
             </li>
           </Link>

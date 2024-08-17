@@ -10,7 +10,7 @@ const Boxes = ({boxes}: BoxesProps) => {
       {boxes.map(
         ({index, name = '', bg = '', img = '', text = '', size = 'small'}) => (
           <Fragment key={index}>
-            {img && <Icon bg={bg} size={size} name={name} img={img} />}
+            {img && <Icon name={name} img={img} size={size} bg={bg} />}
             {text && <span className={classes.text}>{text}</span>}
           </Fragment>
         ),

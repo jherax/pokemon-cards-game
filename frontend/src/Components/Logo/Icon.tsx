@@ -11,16 +11,15 @@ const Icon = (props: IconProps) => {
     text,
     skeleton,
     boxShadow,
-    bg = '#ebebeb',
     size = 'small',
-    hover = '',
+    bg = '#ebebeb',
   } = props;
   const shouldAddSkeleton = skeleton ? true : null;
   const classes = useStyles({bg, boxShadow, size});
 
   return (
     <div className={classes.container}>
-      <div className={`${classes.icon} ${hover && classes.hoverIcon}`}>
+      <div className={`${classes.icon} ${classes.hoverIcon}`}>
         <Img
           src={img}
           alt={name}
@@ -47,12 +46,11 @@ const Icon = (props: IconProps) => {
 export default Icon;
 
 export type IconProps = Readonly<{
-  img: string;
   name: string;
-  text?: string;
+  img: string;
   bg?: string;
-  hover?: boolean;
-  skeleton?: boolean;
   size?: IconSize;
+  text?: string;
+  skeleton?: boolean;
   boxShadow?: boolean;
 }>;
