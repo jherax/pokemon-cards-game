@@ -49,7 +49,7 @@ const PokemonCardDetail = () => {
             <Button
               color={textColor}
               text='View Options'
-              onClick={() => setHideOptions(!hideOptions)}
+              onClick={() => setHideOptions(false)}
             />
           </div>
         </div>

@@ -2,12 +2,11 @@ import {createUseStyles} from 'react-jss';
 
 type StyleProps = {
   loading: boolean;
-  display: boolean;
 };
 
 export const useStyles = createUseStyles({
   cardBattle: {
-    display: ({display}: StyleProps) => (display ? 'flex' : 'none'),
+    display: 'flex',
     flexFlow: 'row wrap',
     alignItems: 'stretch',
     justifyContent: 'space-between',

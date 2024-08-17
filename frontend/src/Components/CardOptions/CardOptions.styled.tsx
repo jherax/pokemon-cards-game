@@ -2,9 +2,6 @@ import {createUseStyles} from 'react-jss';
 
 type StyleProps = {
   hideOptions: boolean;
-  showDetails: boolean;
-  showEdit: boolean;
-  showDelete: boolean;
 };
 
 export const useStyles = createUseStyles({
@@ -28,9 +25,5 @@ export const useStyles = createUseStyles({
     '& > div': {
       padding: '0',
     },
-  },
-
-  cardDetails: {
-    display: ({showDetails}: StyleProps) => (showDetails ? 'block' : 'none'),
   },
 });

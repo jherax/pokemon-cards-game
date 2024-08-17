@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import CardAttacks from '../Cards/CardAttack';
 import CardBoxIcon from '../Cards/CardBoxIcon';
 import CardInfo from '../Cards/CardInfo';
+import ShowComponent from '../Toggle/ShowComponent';
 import {useStyles} from './CardOptions.styled';
 
 const SECTIONS = {
@@ -25,7 +26,7 @@ function CardOptions({
 }: CardOptionsProps) {
   const [toggle, setToggle] = useState({...SECTIONS, showDetails: true});
   const {randomCard, getRandomCard} = usePokemonCardRandom();
-  const classes = useStyles({hideOptions, ...toggle});
+  const classes = useStyles({hideOptions});
 
   const {ability, attacks, rules, miscellaneous} = cardDetail;
   const cloneEdit = edit ? 'Edit' : 'Clone';
@@ -67,19 +68,22 @@ function CardOptions({
       </section>
 
       {/* https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/svp/42 */}
-      <section className={classes.cardDetails}>
-        {ability && <CardInfo data={ability} />}
-        {rules && <CardInfo data={rules} />}
-        {attacks && <CardAttacks data={attacks} />}
-        <CardBoxIcon data={miscellaneous} />
-      </section>
+      <ShowComponent show={toggle.showDetails}>
+        <section>
+          {ability && <CardInfo data={ability} />}
+          {rules && <CardInfo data={rules} />}
+          {attacks && <CardAttacks data={attacks} />}
+          <CardBoxIcon data={miscellaneous} />
+        </section>
+      </ShowComponent>
 
-      <BattleCard
-        show={toggle.showBattle}
-        playerCard={cardDetail.card}
-        opponentCard={randomCard}
-        onClickVersus={onBattle}
-      />
+      <ShowComponent show={toggle.showBattle}>
+        <BattleCard
+          playerCard={cardDetail.card}
+          opponentCard={randomCard}
+          onClickVersus={onBattle}
+        />
+      </ShowComponent>
     </Fragment>
   );
 }

@@ -10,14 +10,13 @@ import selectPlayersOrder from './selectPlayersOrder';
 import validatePlayerHP from './validatePlayerHP';
 
 function BattleCard({
-  show,
   playerCard,
   opponentCard,
   onClickVersus,
 }: BattleCardProps) {
   const [moves, setMoves] = useState<string[]>([]);
-  const loading = opponentCard == null; // runs only the first time
-  const classes = useStyles({display: show, loading});
+  const loading = opponentCard == null; // only 1st render
+  const classes = useStyles({loading});
   const playerCardRef = useRef(playerCard);
 
   useEffect(() => {
@@ -88,7 +87,6 @@ function BattleCard({
 export default BattleCard;
 
 export type BattleCardProps = Readonly<{
-  show: boolean;
   playerCard: ICard;
   opponentCard?: ICard;
   onClickVersus?: () => void;
