@@ -3,6 +3,7 @@ import {Img} from 'react-image';
 import {Link, Navigate, useParams} from 'react-router-dom';
 
 import Button from '../../Components/Button/Button';
+import H1 from '../../Components/Headers/H1';
 import Loading from '../../Components/Loader/Loading';
 import Icon from '../../Components/Logo/Icon';
 import FlexSkeleton from '../../Components/Skeleton/FlexSkeleton';
@@ -25,8 +26,15 @@ const PokemonCardsName = () => {
   if (name === 'null') {
     return <Navigate to='/error404' replace={true} />;
   }
-  if (!cards.length) {
+  if (isLoading) {
     return <Loading color={bg} middle />;
+  }
+  if (isFinal && !cards.length) {
+    return (
+      <div className={classes.center}>
+        <H1 text='No Pokémons found' />
+      </div>
+    );
   }
 
   return (

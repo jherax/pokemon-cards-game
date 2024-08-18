@@ -31,4 +31,10 @@ export const useStyles = createUseStyles({
       width: '100%',
     },
   },
+  center: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
 });

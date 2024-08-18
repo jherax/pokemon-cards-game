@@ -32,7 +32,7 @@ function SearchBar({color = '#7b8188'}: SearchBarProps) {
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       const pokeName = (e.target as HTMLInputElement).value.trim();
       if (pokeName.length > 2 && e.key === 'Enter') {
-        navigate(`/name/${pokeName.toLowerCase()}`);
+        navigate(`/search/${pokeName.toLowerCase()}`);
       }
     },
     [navigate],

@@ -17,6 +17,7 @@ const usePokemonCardsName = (pokeName: string) => {
           page: 1,
           pageSize: 10,
           isFinal: false,
+          isLoading: true,
           lastPageFetched: 0,
         };
   }, [globalState, pokeName]);
