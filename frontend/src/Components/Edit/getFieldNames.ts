@@ -1,10 +1,5 @@
+import fieldPrefix from '../../utils/fieldPrefix';
 import getNumber from '../../utils/getNumber';
-
-export const fieldPrefix = {
-  ATTACK: 'attack_',
-  WEAKNESS: 'weakness_',
-  RESISTANCE: 'resistance_',
-};
 
 function getFieldNames(card: ICard): Record<string, string> {
   const {ATTACK, WEAKNESS, RESISTANCE} = fieldPrefix;

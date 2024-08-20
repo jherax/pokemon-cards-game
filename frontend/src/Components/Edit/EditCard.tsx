@@ -1,24 +1,29 @@
 import {useCallback, useContext, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
+import usePokemonUpdate from '../../Hooks/usePokemonUpdate';
 import GlobalContext from '../../Providers/GlobalContext';
+import fieldPrefix from '../../utils/fieldPrefix';
 import Button from '../Button/Button';
 import H3 from '../Headers/H3';
 import ShowComponent from '../Toggle/ShowComponent';
 import ShowError from '../Toggle/ShowError';
 import {isSpecialKey, isValidKey} from './allowedKeys';
 import {useStyles} from './EditCard.styled';
-import getFieldNames, {fieldPrefix} from './getFieldNames';
+import getFieldNames from './getFieldNames';
 import TypesIcons from './TypesIcons';
-import updateCard from './updateCard';
 import validations, {MAX_ATTACK, MAX_HP} from './validations';
 
 function EditCard({card, textColor}: EditCardProps) {
   const {globalState} = useContext(GlobalContext);
   const classes = useStyles({textColor});
+  const navigate = useNavigate();
 
   const newCard = JSON.parse(JSON.stringify(card)) as ICard;
   const [fields, setFields] = useState(getFieldNames(newCard));
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [button, setButton] = useState({text: 'Save', disabled: false});
+  const {updateCard} = usePokemonUpdate();
 
   const {ATTACK, WEAKNESS, RESISTANCE} = fieldPrefix;
   const {validateField, getErrors} = validations;
@@ -34,9 +39,10 @@ function EditCard({card, textColor}: EditCardProps) {
       return;
     }
 
-    updateCard(newCard, fields).then(console.info);
-    // TODO: Add new card to gobalState.cardsById
-    // TODO: Add new card to gobalState.cardsByType
+    updateCard(newCard, fields).then(c => {
+      setButton({text: 'Updated!', disabled: true});
+      setTimeout(() => navigate('/'), 2000);
+    });
   };
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -213,7 +219,13 @@ function EditCard({card, textColor}: EditCardProps) {
           </fieldset>
         </ShowComponent>
 
-        <Button color={textColor} text='Save' align='left' onClick={onSave} />
+        <Button
+          color={textColor}
+          text={button.text}
+          disabled={button.disabled}
+          onClick={onSave}
+          align='left'
+        />
       </form>
     </section>
   );

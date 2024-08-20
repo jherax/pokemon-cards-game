@@ -1,5 +1,5 @@
+import fieldPrefix from '../../utils/fieldPrefix';
 import {specialKeys} from './allowedKeys';
-import {fieldPrefix} from './getFieldNames';
 
 /**
  * @see https://bulbapedia.bulbagarden.net/wiki/HP_(TCG)#List_of_cards_by_HP

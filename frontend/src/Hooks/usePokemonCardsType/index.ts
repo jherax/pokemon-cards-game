@@ -8,12 +8,13 @@ const usePokemonCardsType = (typeId: PokemonTypes) => {
 
   // checks if the set by type exists, if not, initialize it
   const cardsByType: PokeCardsByType = useMemo(() => {
-    return globalState.cardsByType[typeId]?.id
-      ? globalState.cardsByType[typeId]
+    const cardsType = globalState.cardsByType[typeId] || {};
+    return cardsType.id
+      ? cardsType
       : {
           id: typeId,
           title: globalState.localTypes[typeId] || {},
-          cards: [],
+          cards: cardsType.cards || [],
           page: 1,
           pageSize: 10,
           isFinal: false,

@@ -1,7 +1,7 @@
 import {initialGlobalState} from '../Providers/initialGlobalState';
 
 declare global {
-  export type GobalState = {
+  export type GobalState = Readonly<{
     localTypes: {
       [key in keyof (typeof initialGlobalState)['localTypes']]: {
         bg: string;
@@ -11,7 +11,7 @@ declare global {
     cardsByName: PokeCardsByName;
     cardsByType: Record<PokemonTypes, PokeCardsByType>;
     cardsById: Record<string, ICard>;
-  };
+  }>;
 
   export type AppGlobalContext = Readonly<{
     globalState: GobalState;

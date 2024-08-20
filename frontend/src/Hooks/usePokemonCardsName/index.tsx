@@ -8,12 +8,13 @@ const usePokemonCardsName = (pokeName: string) => {
 
   // checks if the set by matching name exists, if not, initialize it
   const cardsByName: PokeCardsByName = useMemo(() => {
-    return globalState.cardsByName?.matchName === pokeName
-      ? globalState.cardsByName
+    const cardsName = globalState.cardsByName || {};
+    return cardsName.matchName === pokeName
+      ? cardsName
       : {
           matchName: pokeName,
           title: globalState.localTypes.Unknown,
-          cards: [],
+          cards: cardsName.cards || [],
           page: 1,
           pageSize: 10,
           isFinal: false,
