@@ -6,6 +6,7 @@ import GlobalContext from '../../Providers/GlobalContext';
 import fieldPrefix from '../../utils/fieldPrefix';
 import Button from '../Button/Button';
 import H3 from '../Headers/H3';
+import BlurLayout from '../Toggle/BlurLayout';
 import ShowComponent from '../Toggle/ShowComponent';
 import ShowError from '../Toggle/ShowError';
 import {isSpecialKey, isValidKey} from './allowedKeys';
@@ -227,6 +228,7 @@ function EditCard({card, textColor}: EditCardProps) {
           align='left'
         />
       </form>
+      <BlurLayout show={button.disabled} />
     </section>
   );
 }
