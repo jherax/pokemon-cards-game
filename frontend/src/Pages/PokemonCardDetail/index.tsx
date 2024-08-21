@@ -9,6 +9,7 @@ import Icon from '../../Components/Logo/Icon';
 import FlexSkeleton from '../../Components/Skeleton/FlexSkeleton';
 import Title from '../../Components/Title/Title';
 import usePokemonDetail from '../../Hooks/usePokemonDetail';
+import customBorder from '../../utils/customBorder';
 import {useStyles} from './styled';
 
 const PokemonCardDetail = () => {
@@ -25,6 +26,7 @@ const PokemonCardDetail = () => {
   }
 
   const {svgImage, name, title, subtitle, image, types} = cardDetail;
+  const customCard = cardDetail.card.custom;
   const textColor = '#4e5761';
 
   return (
@@ -44,7 +46,12 @@ const PokemonCardDetail = () => {
       </Title>
       <div className={classes.row}>
         <div className={classes.left}>
-          <Img src={image} loader={<FlexSkeleton count={21} />} alt={image} />
+          <Img
+            src={image}
+            alt={image}
+            className={customBorder(customCard)}
+            loader={<FlexSkeleton count={21} />}
+          />
           <div className={classes.leftButtonContainer}>
             <Button
               color={textColor}

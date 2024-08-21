@@ -63,6 +63,7 @@ const usePokemonUpdate = () => {
         }
       }
 
+      card.custom = true;
       const updatedCard = await savePokemonCard(card);
       updateContext(updatedCard);
       return updatedCard;

@@ -9,6 +9,7 @@ import Icon from '../../Components/Logo/Icon';
 import FlexSkeleton from '../../Components/Skeleton/FlexSkeleton';
 import Title from '../../Components/Title/Title';
 import usePokemonCardsName from '../../Hooks/usePokemonCardsName';
+import customBorder from '../../utils/customBorder';
 import {useStyles} from './styled';
 
 const PokemonCardsName = () => {
@@ -49,13 +50,13 @@ const PokemonCardsName = () => {
       </Title>
 
       <ul className={classes.ul}>
-        {cards.map(({id, name, images}) => (
+        {cards.map(({id, name, images, custom}) => (
           <li key={id} className={classes.li}>
             <Link to={`/Card/${id}`}>
               <Img
                 src={images.small}
                 loader={<FlexSkeleton count={10} />}
-                className={classes.img}
+                className={`${classes.img} ${customBorder(custom)}`}
                 alt={name}
               />
             </Link>

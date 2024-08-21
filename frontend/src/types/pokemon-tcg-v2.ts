@@ -6,6 +6,7 @@ declare global {
   export interface ICard {
     id: string;
     name: string;
+    custom?: boolean;
     types: PokemonTypes[];
     supertype: string;
     subtypes: string[];
