@@ -6,6 +6,7 @@ import cors from 'cors';
 import express, {type Express} from 'express';
 import helmet from 'helmet';
 
+import getConnection from '../db/connection';
 import connectDb from '../db/postgres';
 import defaultRoutes from '../routes/default';
 import handleErrors from '../routes/errors';
@@ -49,9 +50,18 @@ export class NodeServer {
     return this._server;
   }
 
+  public async syncModels() {
+    /**
+     * @see https://sequelize.org/docs/v6/core-concepts/model-basics/#model-synchronization
+     */
+    const sequelize = getConnection();
+    await sequelize.sync({alter: config.isDev});
+  }
+
   public startDB(): Promise<void> {
     if (this._started) return Promise.resolve();
     this._app.on(events.SERVER_READY, this.start.bind(this));
+    // this.syncModels().then(() => connectDb(this._app));
     return connectDb(this._app);
   }
 
