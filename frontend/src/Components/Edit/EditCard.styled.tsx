@@ -13,6 +13,12 @@ export const useStyles = createUseStyles({
     '& fieldset:not(:last-child)': {
       marginBottom: '20px',
     },
+
+    '& form button': {
+      '@media (max-width: 767px)': {
+        width: '100%',
+      },
+    },
   },
 
   textBold: {
