@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import CardAttacks from '../Cards/CardAttack';
 import CardBoxIcon from '../Cards/CardBoxIcon';
 import CardInfo from '../Cards/CardInfo';
+import DeleteCard from '../Delete/DeleteCard';
 import EditCard from '../Edit/EditCard';
 import ShowComponent from '../Toggle/ShowComponent';
 import {useStyles} from './CardOptions.styled';
@@ -88,6 +89,10 @@ function CardOptions({
 
       <ShowComponent show={toggle.showEdit}>
         <EditCard card={cardDetail.card} textColor={color} />
+      </ShowComponent>
+
+      <ShowComponent show={toggle.showDelete}>
+        <DeleteCard card={cardDetail.card} textColor={color} />
       </ShowComponent>
     </Fragment>
   );

@@ -26,7 +26,7 @@ const PokemonCardDetail = () => {
   }
 
   const {svgImage, name, title, subtitle, image, types} = cardDetail;
-  const customCard = cardDetail.card.custom;
+  const customCard = cardDetail.card.custom ?? false;
   const textColor = '#4e5761';
 
   return (
@@ -62,7 +62,7 @@ const PokemonCardDetail = () => {
         </div>
         <div className={classes.right}>
           <CardOptions
-            edit={false}
+            edit={customCard}
             cardDetail={cardDetail}
             textColor={textColor}
             hideOptions={hideOptions}
