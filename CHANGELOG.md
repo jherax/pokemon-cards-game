@@ -4,6 +4,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/jherax/pokemon-cards-game/compare/v1.1.0...v2.0.0) (2024-08-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Migrated to pokemon-tcg API v2
+
+### Features
+
+* Added BlurLayout component to show a blurred screen ([1d69493](https://github.com/jherax/pokemon-cards-game/commit/1d694938eabca77fa6d8278b9504100f15a828d5))
+* Added DeleteCard component to remove a cloned card ([d78dc1c](https://github.com/jherax/pokemon-cards-game/commit/d78dc1c82d019a2c808d3d109d73f6b6d73725b4))
+* Added EditCard component to clone/edit a card ([69d1fd4](https://github.com/jherax/pokemon-cards-game/commit/69d1fd468d94e0d65f6ffec743594b6c554dd520))
+* Added No Results text for search by name ([3aee24a](https://github.com/jherax/pokemon-cards-game/commit/3aee24a780e79c9d7778842c7391ab8e736706c2))
+* Added property 'custom' to highlight cloned/edited cards ([f034644](https://github.com/jherax/pokemon-cards-game/commit/f0346447ba7e931d68e9ccc4c362b9654890397c))
+* Added ShowComponent to show/hide children components ([c589608](https://github.com/jherax/pokemon-cards-game/commit/c589608bc7a4be51fadefa014a2e844a85cc9f14))
+* Added usePokemonUpdate hook to update a card ([e6a9e0b](https://github.com/jherax/pokemon-cards-game/commit/e6a9e0b85dd1246774571512cb2966e893bf0edb))
+
+
+### Bug Fixes
+
+* Fixed wrong damage calculation ([f90c3ab](https://github.com/jherax/pokemon-cards-game/commit/f90c3ab085b83228ae4b072df04eb1d1cc3d6027))
+
+
+### Improvements
+
+* Added ICard to PokeCardDetail to be shared across children components ([0451e27](https://github.com/jherax/pokemon-cards-game/commit/0451e27da0b481936d671e74e6eee092aadda9bf))
+* Migrated to pokemon-tcg API v2 ([20a8786](https://github.com/jherax/pokemon-cards-game/commit/20a87869a73c2f623c67647e657e8dd141e37a06))
+* Updated styles for Icon and Button components ([5914771](https://github.com/jherax/pokemon-cards-game/commit/59147712a63291161bdce602843e54fd718c83d6))
+
 ## [1.1.0](https://github.com/jherax/pokemon-cards-game/compare/v1.0.0...v1.1.0) (2024-08-10)
 
 
