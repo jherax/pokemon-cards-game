@@ -22,6 +22,9 @@ const config = {
   },
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRE: +process.env.JWT_EXPIRE || 86400, // 1 DAY
+  isDev: ['development', 'dev'].includes(process.env.NODE_ENV),
+  isProd: ['production', 'prod'].includes(process.env.NODE_ENV),
+  isTest: process.env.NODE_ENV === 'test',
 };
 
 export default config;

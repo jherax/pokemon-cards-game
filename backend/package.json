@@ -17,7 +17,10 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "psql": "node scripts/start-psql.js",
+    "db:up": "node scripts/start-psql.js",
+    "db:create": "sequelize-cli db:create",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:undo": "sequelize-cli db:migrate:undo",
     "secret": "node scripts/create-secret.js",
     "build": "tsc -p config/tsconfig.build.json",
     "build-prd": "node config/esbuild.js",
@@ -41,6 +44,7 @@
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
     "swagger-ui-express": "^5.0.0",
     "tsoa": "^5.1.1",
     "typescript": "~5.1.5"
@@ -51,6 +55,7 @@
     "@types/jest": "~29.5.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "~20.10.0",
+    "@types/sequelize": "^4.28.20",
     "@types/supertest": "~2.0.12",
     "@types/swagger-ui-express": "^4.1.6",
     "@typescript-eslint/eslint-plugin": "~6.12.0",

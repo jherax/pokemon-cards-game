@@ -19,7 +19,7 @@ Make sure to set the env variables. For local environment you can create a
 `.env` file with the following environment variables:
 
 ```bash
-# dev | prod | qa
+# dev | prod | test
 NODE_ENV=dev
 APP_HOST=localhost
 APP_PORT=3004
@@ -43,13 +43,26 @@ Install required dependencies:
 npm install
 ```
 
-After all dependencies are installed, just run the command:
+After all dependencies are installed, just run the commands below:
 
 ```bash
-npm run psql # to start the database (docker)
+npm run db:up # to start the database (docker)
+npm run db:migrate # initializes the database
 npm run swagger # to generate server routes
 npm run dev:server
 ```
+
+## Scripts
+
+- `npm run dev:server` - Starts the server in development mode (watch mode).
+- `npm run swagger` - Generates server routes and swagger documentation.
+- `npm run db:up` - Starts the database (docker).
+- `npm run db:create` - Creates the Database using sequelize.
+- `npm run db:migrate` - Perform migrations using sequelize.
+- `npm run build-all`- Builds the project in production mode.
+- `npm run secret` - Generates a hash used by `JWT_SECRET`
+- `npm run start` - Starts the server (compiled).
+- `npm run test` - Runs all tests.
 
 ## Endpoints
 
@@ -79,7 +92,7 @@ MongoDB is loaded as a docker container, sou you need to make sure to create a
 
 ```bash
 POSTGRES_USER=appuser
-POSTGRES_PASSWORD=symph0NY
+POSTGRES_PASSWORD=symfony
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=pokemon
@@ -93,7 +106,7 @@ In order to run Postgres, you need to mount the docker container, and start the
 `psql` service. To do that just run the command:
 
 ```bash
-npm run psql
+npm run db:up
 ```
 
 After that, let's make sure the container is running:
@@ -121,8 +134,8 @@ web-based Postgres admin interface, go to the browser and navigate to
   the database service name in the `docker-compose.yml` file.
   - Alternatively, you can use the docker container public IP . Just execute:
     `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgresdb_14`
-- Put the username and password specified in the env variables `POSTGRES_USER`
-  and `POSTGRES_PASSWORD` respectively.
+- Put the **username** and **password** specified in the env variables
+  `POSTGRES_USER` and `POSTGRES_PASSWORD` respectively.
 
 If you want to open the terminal to run commands on the container, just run the
 following command for the specific container:
