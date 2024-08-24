@@ -73,7 +73,7 @@
 	},
 	"info": {
 		"title": "pokemon-cards-game-backend",
-		"version": "0.1.0",
+		"version": "2.0.0",
 		"description": "Pokemon Card Battle TCG (Express + JWT + tsoa + Postgres)",
 		"license": {
 			"name": "ISC"
