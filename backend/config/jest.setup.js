@@ -1,3 +1,6 @@
+const SequelizeMock = require('sequelize-mock');
+const DBConnectionMock = new SequelizeMock();
+
 /**
  * Jest-Timers
  * @see https://jestjs.io/docs/timer-mocks
@@ -41,5 +44,16 @@ jest.mock('../src/server/config', () => {
     },
     JWT_SECRET: 'my-secret-hash',
     JWT_EXPIRE: 3600, // 1 hour
+    isDev: false,
+    isProd: false,
+    isTest: true,
+  };
+});
+
+// Mock Sequelize Connection
+jest.mock('../src/db/connection', () => {
+  return {
+    __esModule: true,
+    default: () => DBConnectionMock,
   };
 });

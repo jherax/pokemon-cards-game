@@ -1,11 +1,11 @@
-import {Sequelize} from 'sequelize';
-
 import {NodeServer} from '../../server';
 import events from '../../server/events';
 import logger from '../../utils/logger';
+import getConnection from '../connection';
 
 describe('Connect database using Postgres and Sequelize', () => {
   jest.spyOn(NodeServer.prototype, 'start').mockImplementation(jest.fn());
+  const sequelizeConn = getConnection();
   let emitter: jest.SpyInstance;
   let appInstance: NodeServer;
 
@@ -30,7 +30,7 @@ describe('Connect database using Postgres and Sequelize', () => {
   // Database connection is successfully established with Postgres
   it('should emit SERVER_READY event when database connection is successful', async () => {
     const authenticateMock = jest
-      .spyOn(Sequelize.prototype, 'authenticate')
+      .spyOn(sequelizeConn, 'authenticate')
       .mockResolvedValueOnce();
 
     await appInstance.startDB();
@@ -43,7 +43,7 @@ describe('Connect database using Postgres and Sequelize', () => {
   it('should log error when database connection fails', async () => {
     const rejection = new Error('Invalid credentials');
     const authenticateMock = jest
-      .spyOn(Sequelize.prototype, 'authenticate')
+      .spyOn(sequelizeConn, 'authenticate')
       .mockRejectedValueOnce(rejection);
 
     try {
