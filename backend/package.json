@@ -49,7 +49,8 @@
     "sequelize-typescript": "^2.1.6",
     "swagger-ui-express": "^5.0.0",
     "tsoa": "^5.1.1",
-    "typescript": "~5.1.5"
+    "typescript": "~5.1.5",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@swc/jest": "~0.2.27",

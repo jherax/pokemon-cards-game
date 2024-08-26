@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:{{$dotenv APP_PORT}}
+
+# To get a valid JWT token, invoke the "/login" endpoint first, 
+# then copy the token from the response to the env variable JWT_TOKEN
+@auth_token = {{$dotenv JWT_TOKEN}}
+
+# Default query parameters
+@query_params = ?pageSize=10&page=1
+
+## Gets all Pokémon cards of Metal type
+GET {{baseUrl}}/api/v1/cards/type/Metal{{query_params}}
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+## Gets all Pokémon cards of Fighting type
+GET {{baseUrl}}/api/v1/cards/type/Fighting{{query_params}}
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+## Gets all Pokémon cards starting with "Arm"
+GET {{baseUrl}}/api/v1/cards/name/arm{{query_params}}
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}

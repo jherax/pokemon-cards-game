@@ -3,9 +3,9 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { LoginController } from './../controllers/login/LoginController';
+import { CardsController } from './../controllers/cards/CardsController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { SecureController } from './../controllers/login/SecureController';
+import { LoginController } from './../controllers/login/LoginController';
 import { expressAuthentication } from './../server/authentication';
 // @ts-ignore - no great way to install types from subpackage
 const promiseAny = require('promise.any');
@@ -14,6 +14,107 @@ import type { RequestHandler, Router } from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "CreateCardResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "success": {"dataType":"boolean","required":true},
+            "message": {"dataType":"string","required":true},
+            "statusCode": {"dataType":"double","required":true},
+            "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true}},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IResistWeak": {
+        "dataType": "refObject",
+        "properties": {
+            "type": {"dataType":"string","required":true},
+            "value": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Legality": {
+        "dataType": "refEnum",
+        "enums": ["Legal","Banned"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ILegality": {
+        "dataType": "refObject",
+        "properties": {
+            "expanded": {"ref":"Legality"},
+            "standard": {"ref":"Legality"},
+            "unlimited": {"ref":"Legality"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IPrice": {
+        "dataType": "refObject",
+        "properties": {
+            "low": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
+            "mid": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
+            "high": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
+            "market": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
+            "directLow": {"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "PokemonCard": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "custom": {"dataType":"boolean"},
+            "types": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "images": {"dataType":"nestedObjectLiteral","nestedProperties":{"large":{"dataType":"string","required":true},"small":{"dataType":"string","required":true}},"required":true},
+            "supertype": {"dataType":"string","required":true},
+            "subtypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "hp": {"dataType":"string","required":true},
+            "evolvesFrom": {"dataType":"string"},
+            "evolvesTo": {"dataType":"array","array":{"dataType":"string"}},
+            "rules": {"dataType":"array","array":{"dataType":"string"}},
+            "ancientTrait": {"dataType":"nestedObjectLiteral","nestedProperties":{"text":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}}},
+            "abilities": {"dataType":"array","array":{"dataType":"nestedObjectLiteral","nestedProperties":{"type":{"dataType":"string","required":true},"text":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}}}},
+            "attacks": {"dataType":"array","array":{"dataType":"nestedObjectLiteral","nestedProperties":{"convertedEnergyCost":{"dataType":"double","required":true},"damage":{"dataType":"string","required":true},"text":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"cost":{"dataType":"array","array":{"dataType":"string"},"required":true}}}},
+            "weaknesses": {"dataType":"array","array":{"dataType":"refObject","ref":"IResistWeak"}},
+            "resistances": {"dataType":"array","array":{"dataType":"refObject","ref":"IResistWeak"}},
+            "retreatCost": {"dataType":"array","array":{"dataType":"string"}},
+            "convertedRetreatCost": {"dataType":"double"},
+            "set": {"dataType":"nestedObjectLiteral","nestedProperties":{"updatedAt":{"dataType":"string","required":true},"releaseDate":{"dataType":"string","required":true},"ptcgoCode":{"dataType":"string","required":true},"legalities":{"ref":"ILegality","required":true},"total":{"dataType":"double","required":true},"printedTotal":{"dataType":"double","required":true},"images":{"dataType":"nestedObjectLiteral","nestedProperties":{"logo":{"dataType":"string","required":true},"symbol":{"dataType":"string","required":true}},"required":true},"series":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"required":true},
+            "number": {"dataType":"string","required":true},
+            "artist": {"dataType":"string"},
+            "rarity": {"dataType":"string","required":true},
+            "flavorText": {"dataType":"string"},
+            "nationalPokedexNumbers": {"dataType":"array","array":{"dataType":"double"}},
+            "legalities": {"ref":"ILegality","required":true},
+            "regulationMark": {"dataType":"string"},
+            "tcgplayer": {"dataType":"nestedObjectLiteral","nestedProperties":{"prices":{"dataType":"nestedObjectLiteral","nestedProperties":{"1stEditionHolofoil":{"ref":"IPrice"},"1stEditionNormal":{"ref":"IPrice"},"reverseHolofoil":{"ref":"IPrice"},"holofoil":{"ref":"IPrice"},"normal":{"ref":"IPrice"}},"required":true},"updatedAt":{"dataType":"string","required":true},"url":{"dataType":"string","required":true}}},
+            "cardmarket": {"dataType":"nestedObjectLiteral","nestedProperties":{"prices":{"dataType":"nestedObjectLiteral","nestedProperties":{"reverseHoloAvg30":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloAvg7":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloAvg1":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg30":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg7":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg1":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"lowPriceExPlus":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloTrend":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloLow":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloSell":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"suggestedPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"germanProLow":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"trendPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"lowPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"averageSellPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true}},"required":true},"updatedAt":{"dataType":"string","required":true},"url":{"dataType":"string","required":true}}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CreateCardRequest": {
+        "dataType": "refObject",
+        "properties": {
+            "card": {"ref":"PokemonCard","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetCardsResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "success": {"dataType":"boolean","required":true},
+            "message": {"dataType":"string","required":true},
+            "statusCode": {"dataType":"double","required":true},
+            "data": {"dataType":"array","array":{"dataType":"refObject","ref":"PokemonCard"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "LoginResponse": {
         "dataType": "refObject",
         "properties": {
@@ -23,16 +124,6 @@ const models: TsoaRoute.Models = {
             "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"token":{"dataType":"string","required":true}},"required":true},
         },
         "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TestSecureResponse": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"data":{"dataType":"string","required":true}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TestSecureRequest": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"payload":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -45,6 +136,86 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+        app.post('/api/v1/cards/create',
+            authenticateMiddleware([{"jwt":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(CardsController)),
+            ...(fetchMiddlewares<RequestHandler>(CardsController.prototype.createCard)),
+
+            function CardsController_createCard(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"CreateCardRequest"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new CardsController();
+
+
+              const promise = controller.createCard.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/v1/cards/type/:cardType',
+            authenticateMiddleware([{"jwt":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(CardsController)),
+            ...(fetchMiddlewares<RequestHandler>(CardsController.prototype.getCardsByType)),
+
+            function CardsController_getCardsByType(request: any, response: any, next: any) {
+            const args = {
+                    cardType: {"in":"path","name":"cardType","required":true,"dataType":"string"},
+                    request: {"in":"request","name":"request","required":true,"dataType":"object"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new CardsController();
+
+
+              const promise = controller.getCardsByType.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/v1/cards/name/:cardName',
+            authenticateMiddleware([{"jwt":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(CardsController)),
+            ...(fetchMiddlewares<RequestHandler>(CardsController.prototype.getCardsByName)),
+
+            function CardsController_getCardsByName(request: any, response: any, next: any) {
+            const args = {
+                    cardName: {"in":"path","name":"cardName","required":true,"dataType":"string"},
+                    request: {"in":"request","name":"request","required":true,"dataType":"object"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new CardsController();
+
+
+              const promise = controller.getCardsByName.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/api/v1/login',
             ...(fetchMiddlewares<RequestHandler>(LoginController)),
             ...(fetchMiddlewares<RequestHandler>(LoginController.prototype.login)),
@@ -63,32 +234,6 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.login.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, undefined, next);
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/api/v1/secure',
-            authenticateMiddleware([{"jwt":[]}]),
-            ...(fetchMiddlewares<RequestHandler>(SecureController)),
-            ...(fetchMiddlewares<RequestHandler>(SecureController.prototype.secure)),
-
-            function SecureController_secure(request: any, response: any, next: any) {
-            const args = {
-                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"TestSecureRequest"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request, response);
-
-                const controller = new SecureController();
-
-
-              const promise = controller.secure.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

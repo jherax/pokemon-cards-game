@@ -6,6 +6,559 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"CreateCardResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"properties": {
+							"id": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"id"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IResistWeak": {
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Legality": {
+				"enum": [
+					"Legal",
+					"Banned"
+				],
+				"type": "string"
+			},
+			"ILegality": {
+				"properties": {
+					"expanded": {
+						"$ref": "#/components/schemas/Legality"
+					},
+					"standard": {
+						"$ref": "#/components/schemas/Legality"
+					},
+					"unlimited": {
+						"$ref": "#/components/schemas/Legality"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IPrice": {
+				"properties": {
+					"low": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"mid": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"high": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"market": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"directLow": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"low",
+					"mid",
+					"high",
+					"market",
+					"directLow"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonCard": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"custom": {
+						"type": "boolean"
+					},
+					"types": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"images": {
+						"properties": {
+							"large": {
+								"type": "string"
+							},
+							"small": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"large",
+							"small"
+						],
+						"type": "object"
+					},
+					"supertype": {
+						"type": "string"
+					},
+					"subtypes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"hp": {
+						"type": "string"
+					},
+					"evolvesFrom": {
+						"type": "string"
+					},
+					"evolvesTo": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"rules": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"ancientTrait": {
+						"properties": {
+							"text": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"text",
+							"name"
+						],
+						"type": "object"
+					},
+					"abilities": {
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"text": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"text",
+								"name"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"attacks": {
+						"items": {
+							"properties": {
+								"convertedEnergyCost": {
+									"type": "number",
+									"format": "double"
+								},
+								"damage": {
+									"type": "string"
+								},
+								"text": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"cost": {
+									"items": {
+										"type": "string"
+									},
+									"type": "array"
+								}
+							},
+							"required": [
+								"convertedEnergyCost",
+								"damage",
+								"text",
+								"name",
+								"cost"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"weaknesses": {
+						"items": {
+							"$ref": "#/components/schemas/IResistWeak"
+						},
+						"type": "array"
+					},
+					"resistances": {
+						"items": {
+							"$ref": "#/components/schemas/IResistWeak"
+						},
+						"type": "array"
+					},
+					"retreatCost": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"convertedRetreatCost": {
+						"type": "number",
+						"format": "double"
+					},
+					"set": {
+						"properties": {
+							"updatedAt": {
+								"type": "string"
+							},
+							"releaseDate": {
+								"type": "string"
+							},
+							"ptcgoCode": {
+								"type": "string"
+							},
+							"legalities": {
+								"$ref": "#/components/schemas/ILegality"
+							},
+							"total": {
+								"type": "number",
+								"format": "double"
+							},
+							"printedTotal": {
+								"type": "number",
+								"format": "double"
+							},
+							"images": {
+								"properties": {
+									"logo": {
+										"type": "string"
+									},
+									"symbol": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"logo",
+									"symbol"
+								],
+								"type": "object"
+							},
+							"series": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"id": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"updatedAt",
+							"releaseDate",
+							"ptcgoCode",
+							"legalities",
+							"total",
+							"printedTotal",
+							"images",
+							"series",
+							"name",
+							"id"
+						],
+						"type": "object"
+					},
+					"number": {
+						"type": "string"
+					},
+					"artist": {
+						"type": "string"
+					},
+					"rarity": {
+						"type": "string"
+					},
+					"flavorText": {
+						"type": "string"
+					},
+					"nationalPokedexNumbers": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					},
+					"legalities": {
+						"$ref": "#/components/schemas/ILegality"
+					},
+					"regulationMark": {
+						"type": "string"
+					},
+					"tcgplayer": {
+						"properties": {
+							"prices": {
+								"properties": {
+									"1stEditionHolofoil": {
+										"$ref": "#/components/schemas/IPrice"
+									},
+									"1stEditionNormal": {
+										"$ref": "#/components/schemas/IPrice"
+									},
+									"reverseHolofoil": {
+										"$ref": "#/components/schemas/IPrice"
+									},
+									"holofoil": {
+										"$ref": "#/components/schemas/IPrice"
+									},
+									"normal": {
+										"$ref": "#/components/schemas/IPrice"
+									}
+								},
+								"type": "object"
+							},
+							"updatedAt": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"prices",
+							"updatedAt",
+							"url"
+						],
+						"type": "object"
+					},
+					"cardmarket": {
+						"properties": {
+							"prices": {
+								"properties": {
+									"reverseHoloAvg30": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"reverseHoloAvg7": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"reverseHoloAvg1": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"avg30": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"avg7": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"avg1": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"lowPriceExPlus": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"reverseHoloTrend": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"reverseHoloLow": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"reverseHoloSell": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"suggestedPrice": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"germanProLow": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"trendPrice": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"lowPrice": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									},
+									"averageSellPrice": {
+										"type": "number",
+										"format": "double",
+										"nullable": true
+									}
+								},
+								"required": [
+									"reverseHoloAvg30",
+									"reverseHoloAvg7",
+									"reverseHoloAvg1",
+									"avg30",
+									"avg7",
+									"avg1",
+									"lowPriceExPlus",
+									"reverseHoloTrend",
+									"reverseHoloLow",
+									"reverseHoloSell",
+									"suggestedPrice",
+									"germanProLow",
+									"trendPrice",
+									"lowPrice",
+									"averageSellPrice"
+								],
+								"type": "object"
+							},
+							"updatedAt": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"prices",
+							"updatedAt",
+							"url"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"types",
+					"images",
+					"supertype",
+					"subtypes",
+					"hp",
+					"set",
+					"number",
+					"rarity",
+					"legalities"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateCardRequest": {
+				"properties": {
+					"card": {
+						"$ref": "#/components/schemas/PokemonCard"
+					}
+				},
+				"required": [
+					"card"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetCardsResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonCard"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"LoginResponse": {
 				"properties": {
 					"success": {
@@ -38,28 +591,6 @@
 				],
 				"type": "object",
 				"additionalProperties": false
-			},
-			"TestSecureResponse": {
-				"properties": {
-					"data": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"data"
-				],
-				"type": "object"
-			},
-			"TestSecureRequest": {
-				"properties": {
-					"payload": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"payload"
-				],
-				"type": "object"
 			}
 		},
 		"securitySchemes": {
@@ -85,6 +616,106 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/cards/create": {
+			"post": {
+				"operationId": "CreateCard",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CreateCardResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Creates a new Pokémon card.",
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateCardRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/cards/type/{cardType}": {
+			"get": {
+				"operationId": "GetCardsByType",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetCardsResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get all cards by Pokémon type.",
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cardType",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/cards/name/{cardName}": {
+			"get": {
+				"operationId": "GetCardsByName",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetCardsResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get all cards by Pokémon name.",
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cardName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/login": {
 			"post": {
 				"operationId": "Login",
@@ -103,40 +734,6 @@
 				"description": "Generates a new JWT token for the user.",
 				"security": [],
 				"parameters": []
-			}
-		},
-		"/secure": {
-			"post": {
-				"operationId": "Secure",
-				"responses": {
-					"200": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/TestSecureResponse"
-								}
-							}
-						}
-					}
-				},
-				"description": "Testing JWT authentication.",
-				"security": [
-					{
-						"jwt": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/TestSecureRequest"
-							}
-						}
-					}
-				}
 			}
 		}
 	},
