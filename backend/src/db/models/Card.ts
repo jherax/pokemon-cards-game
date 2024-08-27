@@ -24,7 +24,8 @@ export class Card extends Model<
   })
   declare id: CreationOptional<string>;
 
-  @Index({type: 'FULLTEXT'})
+  /** @see https://niallburkley.com/blog/index-columns-for-like-in-postgres */
+  @Index({using: 'gin', operator: 'gin_trgm_ops'})
   @Column({type: DataType.STRING, allowNull: false})
   declare name: string;
 

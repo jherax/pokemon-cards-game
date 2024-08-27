@@ -42,7 +42,7 @@
 **/.envrc
 
 # docker
-**/docker/**/poke-data
+**/docker/**/pg-data
 
 # vercel
 **/.vercel

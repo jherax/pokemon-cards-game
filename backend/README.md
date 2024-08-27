@@ -91,14 +91,16 @@ MongoDB is loaded as a docker container, sou you need to make sure to create a
 `.env` file with the following environment variables:
 
 ```bash
-POSTGRES_USER=appuser
-POSTGRES_PASSWORD=symfony
+POSTGRES_USER=pgadmin
+POSTGRES_PASSWORD=dbAdmin
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=pokemon
+PG_APP_USER=appuser
+PG_APP_PASS=symfony
 
 PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
-PGADMIN_DEFAULT_PASSWORD=admin
+PGADMIN_DEFAULT_PASSWORD=admin_pg
 PGADMIN_PORT=5050
 ```
 
@@ -135,7 +137,7 @@ web-based Postgres admin interface, go to the browser and navigate to
   - Alternatively, you can use the docker container public IP . Just execute:
     `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgresdb_14`
 - Put the **username** and **password** specified in the env variables
-  `POSTGRES_USER` and `POSTGRES_PASSWORD` respectively.
+  `PG_APP_USER` and `PG_APP_PASS` respectively.
 
 If you want to open the terminal to run commands on the container, just run the
 following command for the specific container:

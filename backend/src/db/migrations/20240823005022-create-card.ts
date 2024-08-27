@@ -34,7 +34,11 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex('Card', ['name'], {type: 'FULLTEXT'});
+    /** @see https://niallburkley.com/blog/index-columns-for-like-in-postgres */
+    await queryInterface.addIndex('Card', ['name'], {
+      using: 'gin',
+      operator: 'gin_trgm_ops',
+    });
   },
 
   async down(queryInterface: QueryInterface, DataTypes) {
