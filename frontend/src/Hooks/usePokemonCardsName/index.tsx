@@ -14,7 +14,7 @@ const usePokemonCardsName = (pokeName: string) => {
       : {
           matchName: pokeName,
           title: globalState.localTypes.Unknown,
-          cards: cardsName.cards || [],
+          cards: [],
           page: 1,
           pageSize: 10,
           isFinal: false,
@@ -48,15 +48,11 @@ const usePokemonCardsName = (pokeName: string) => {
             ? {...globalState.cardsById, ...newCardsById}
             : globalState.cardsById;
 
-          const updatedPokeCards = hasNewCards
-            ? [...cards, ...dataCards]
-            : cards;
-
           setGlobalState({
             cardsById: updatedCardsById,
             cardsByName: {
               ...cardsByName,
-              cards: updatedPokeCards,
+              cards: [...cards, ...dataCards],
               isFinal: !results || results < pageSize,
               lastPageFetched: page,
               isLoading: false,

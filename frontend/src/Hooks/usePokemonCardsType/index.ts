@@ -23,11 +23,11 @@ const usePokemonCardsType = (typeId: PokemonTypes) => {
   }, [globalState, typeId]);
 
   useEffect(() => {
-    const {id, cards, page, pageSize, lastPageFetched} = cardsByType;
+    const {id: typeId, cards, page, pageSize, lastPageFetched} = cardsByType;
 
     // fetch the current page
     if (page !== lastPageFetched) {
-      getCardsByType(id, pageSize, page)
+      getCardsByType(typeId, pageSize, page)
         .then(dataCards => {
           let newCardsById: Record<string, ICard> = {};
 
@@ -47,17 +47,20 @@ const usePokemonCardsType = (typeId: PokemonTypes) => {
             ? {...globalState.cardsById, ...newCardsById}
             : globalState.cardsById;
 
-          const updatedPokeCards = hasNewCards
-            ? [...cards, ...dataCards]
-            : cards;
+          const uniqueCards = [...cards, ...dataCards].reduce(
+            (map: Map<string, ICard>, item: ICard) => {
+              return map.set(item.id, item);
+            },
+            new Map<string, ICard>(),
+          );
 
           setGlobalState({
             cardsById: updatedCardsById,
             cardsByType: {
               ...globalState.cardsByType,
-              [id as PokemonTypes]: {
+              [typeId]: {
                 ...cardsByType,
-                cards: updatedPokeCards,
+                cards: Array.from(uniqueCards.values()),
                 isFinal: !results || results < pageSize,
                 lastPageFetched: page,
                 isLoading: false,

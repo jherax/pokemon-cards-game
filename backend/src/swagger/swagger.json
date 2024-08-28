@@ -39,6 +39,18 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"CreateCardRequest": {
+				"properties": {
+					"card": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"card"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IResistWeak": {
 				"properties": {
 					"type": {
@@ -55,23 +67,28 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Legality": {
-				"enum": [
-					"Legal",
-					"Banned"
-				],
-				"type": "string"
-			},
 			"ILegality": {
 				"properties": {
 					"expanded": {
-						"$ref": "#/components/schemas/Legality"
+						"type": "string",
+						"enum": [
+							"Legal",
+							"Banned"
+						]
 					},
 					"standard": {
-						"$ref": "#/components/schemas/Legality"
+						"type": "string",
+						"enum": [
+							"Legal",
+							"Banned"
+						]
 					},
 					"unlimited": {
-						"$ref": "#/components/schemas/Legality"
+						"type": "string",
+						"enum": [
+							"Legal",
+							"Banned"
+						]
 					}
 				},
 				"type": "object",
@@ -157,6 +174,9 @@
 						"type": "array"
 					},
 					"hp": {
+						"type": "string"
+					},
+					"level": {
 						"type": "string"
 					},
 					"evolvesFrom": {
@@ -363,6 +383,9 @@
 									"1stEditionNormal": {
 										"$ref": "#/components/schemas/IPrice"
 									},
+									"unlimitedHolofoil": {
+										"$ref": "#/components/schemas/IPrice"
+									},
 									"reverseHolofoil": {
 										"$ref": "#/components/schemas/IPrice"
 									},
@@ -515,18 +538,6 @@
 					"number",
 					"rarity",
 					"legalities"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"CreateCardRequest": {
-				"properties": {
-					"card": {
-						"$ref": "#/components/schemas/PokemonCard"
-					}
-				},
-				"required": [
-					"card"
 				],
 				"type": "object",
 				"additionalProperties": false

@@ -8,9 +8,11 @@ declare global {
     name: string;
     custom?: boolean;
     types: PokemonTypes[];
+    images: ICardImage;
     supertype: string;
     subtypes: string[];
     hp: string; // Number with symbols
+    level?: string; // Number
     evolvesFrom?: string;
     evolvesTo?: string[];
     rules?: string[];
@@ -29,7 +31,6 @@ declare global {
     nationalPokedexNumbers?: number[];
     legalities: ILegality;
     regulationMark?: string;
-    images: ICardImage;
     tcgplayer?: ITCGPlayer;
     cardmarket?: ICardmarket;
   }
@@ -99,6 +100,7 @@ declare global {
       normal?: IPrice;
       holofoil?: IPrice;
       reverseHolofoil?: IPrice;
+      unlimitedHolofoil?: IPrice;
       '1stEditionNormal'?: IPrice;
       '1stEditionHolofoil'?: IPrice;
     };

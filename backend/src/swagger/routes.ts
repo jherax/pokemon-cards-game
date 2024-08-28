@@ -25,6 +25,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CreateCardRequest": {
+        "dataType": "refObject",
+        "properties": {
+            "card": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IResistWeak": {
         "dataType": "refObject",
         "properties": {
@@ -34,17 +42,12 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Legality": {
-        "dataType": "refEnum",
-        "enums": ["Legal","Banned"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ILegality": {
         "dataType": "refObject",
         "properties": {
-            "expanded": {"ref":"Legality"},
-            "standard": {"ref":"Legality"},
-            "unlimited": {"ref":"Legality"},
+            "expanded": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["Legal"]},{"dataType":"enum","enums":["Banned"]}]},
+            "standard": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["Legal"]},{"dataType":"enum","enums":["Banned"]}]},
+            "unlimited": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["Legal"]},{"dataType":"enum","enums":["Banned"]}]},
         },
         "additionalProperties": false,
     },
@@ -72,6 +75,7 @@ const models: TsoaRoute.Models = {
             "supertype": {"dataType":"string","required":true},
             "subtypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
             "hp": {"dataType":"string","required":true},
+            "level": {"dataType":"string"},
             "evolvesFrom": {"dataType":"string"},
             "evolvesTo": {"dataType":"array","array":{"dataType":"string"}},
             "rules": {"dataType":"array","array":{"dataType":"string"}},
@@ -90,16 +94,8 @@ const models: TsoaRoute.Models = {
             "nationalPokedexNumbers": {"dataType":"array","array":{"dataType":"double"}},
             "legalities": {"ref":"ILegality","required":true},
             "regulationMark": {"dataType":"string"},
-            "tcgplayer": {"dataType":"nestedObjectLiteral","nestedProperties":{"prices":{"dataType":"nestedObjectLiteral","nestedProperties":{"1stEditionHolofoil":{"ref":"IPrice"},"1stEditionNormal":{"ref":"IPrice"},"reverseHolofoil":{"ref":"IPrice"},"holofoil":{"ref":"IPrice"},"normal":{"ref":"IPrice"}},"required":true},"updatedAt":{"dataType":"string","required":true},"url":{"dataType":"string","required":true}}},
+            "tcgplayer": {"dataType":"nestedObjectLiteral","nestedProperties":{"prices":{"dataType":"nestedObjectLiteral","nestedProperties":{"1stEditionHolofoil":{"ref":"IPrice"},"1stEditionNormal":{"ref":"IPrice"},"unlimitedHolofoil":{"ref":"IPrice"},"reverseHolofoil":{"ref":"IPrice"},"holofoil":{"ref":"IPrice"},"normal":{"ref":"IPrice"}},"required":true},"updatedAt":{"dataType":"string","required":true},"url":{"dataType":"string","required":true}}},
             "cardmarket": {"dataType":"nestedObjectLiteral","nestedProperties":{"prices":{"dataType":"nestedObjectLiteral","nestedProperties":{"reverseHoloAvg30":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloAvg7":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloAvg1":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg30":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg7":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"avg1":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"lowPriceExPlus":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloTrend":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloLow":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"reverseHoloSell":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"suggestedPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"germanProLow":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"trendPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"lowPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true},"averageSellPrice":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}],"required":true}},"required":true},"updatedAt":{"dataType":"string","required":true},"url":{"dataType":"string","required":true}}},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "CreateCardRequest": {
-        "dataType": "refObject",
-        "properties": {
-            "card": {"ref":"PokemonCard","required":true},
         },
         "additionalProperties": false,
     },

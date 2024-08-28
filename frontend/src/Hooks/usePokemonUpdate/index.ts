@@ -14,9 +14,14 @@ const usePokemonUpdate = () => {
       const {cardsById, cardsByType, cardsByName} = globalState;
       const addTypes = {} as GobalState['cardsByType'];
       let cardsName = {} as GobalState['cardsByName'];
+      // filters cards different than current card
+      const notCurrentCard = (cards: ICard[]) => {
+        return (cards || []).filter(c => c.id !== card.id);
+      };
       // if a search was made by pokemon name
       if (card.name.toLowerCase().startsWith(cardsByName?.matchName)) {
-        cardsName = {...cardsByName, cards: [card, ...cardsByName.cards]};
+        const prevCards = notCurrentCard(cardsByName.cards);
+        cardsName = {...cardsByName, cards: [card, ...prevCards]};
       }
       setGlobalState({
         cardsById: {
@@ -28,7 +33,7 @@ const usePokemonUpdate = () => {
           ...cardsByType,
           ...card.types.reduce((cardTypes, t) => {
             const cardType = cardsByType[t] || {};
-            const prevCards = cardType.cards || [];
+            const prevCards = notCurrentCard(cardType.cards);
             cardTypes[t] = {
               ...cardType,
               cards: [card, ...prevCards],

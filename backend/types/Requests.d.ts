@@ -11,7 +11,7 @@ export interface LoginResponse extends ServerMessage {
 }
 
 export interface CreateCardRequest {
-  card: PokemonCard;
+  card: string; // JSON PokemonCard
 }
 
 export interface CreateCardResponse extends ServerMessage {

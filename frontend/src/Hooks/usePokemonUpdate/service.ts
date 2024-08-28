@@ -5,7 +5,11 @@ import {backendService} from '../../services/axios.backend-api';
 type PokeCardData = {data: {id: string}};
 
 const savePokemonCard = async (card: ICard) => {
-  const body = {card};
+  // As the pokemon-tcg api may change,
+  // and the backend service has a schema validator,
+  // we need to send the card as JSON in order to
+  // pass the validation.
+  const body = {card: JSON.stringify(card)};
   return backendService
     .post<PokeCardData>('/cards/create', body)
     .then(({data}) => {

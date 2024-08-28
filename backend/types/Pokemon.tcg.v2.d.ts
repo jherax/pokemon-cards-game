@@ -16,6 +16,7 @@ export interface PokemonCard {
   supertype: string;
   subtypes: string[];
   hp: string; // Number with symbols
+  level?: string; // Number
   evolvesFrom?: string;
   evolvesTo?: string[];
   rules?: string[];
@@ -75,6 +76,7 @@ export interface PokemonCard {
       normal?: IPrice;
       holofoil?: IPrice;
       reverseHolofoil?: IPrice;
+      unlimitedHolofoil?: IPrice;
       '1stEditionNormal'?: IPrice;
       '1stEditionHolofoil'?: IPrice;
     };
@@ -108,15 +110,10 @@ interface IResistWeak {
   value: string; // '×2', '-20'
 }
 
-enum Legality {
-  LEGAL = 'Legal',
-  BANNED = 'Banned',
-}
-
 interface ILegality {
-  expanded?: Legality;
-  standard?: Legality;
-  unlimited?: Legality;
+  expanded?: 'Legal' | 'Banned';
+  standard?: 'Legal' | 'Banned';
+  unlimited?: 'Legal' | 'Banned';
 }
 
 interface IPrice {

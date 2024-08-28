@@ -18,7 +18,7 @@ import type {
   GetCardsQuery,
   GetCardsResponse,
 } from '../../../types/Requests';
-import * as DAL from '../../db/DAL/cards.dal';
+import DAL from '../../db/DAL/cards';
 import messages from '../../server/messages';
 
 const {SUCCESSFUL, SUCCESSFUL_ADDED} = messages;
@@ -32,7 +32,7 @@ export class CardsController extends Controller {
   @Security('jwt')
   @Post('create')
   public async createCard(@Body() requestBody: CreateCardRequest) {
-    const newCard = await DAL.create(requestBody.card);
+    const newCard = await DAL.saveCard(requestBody.card);
     const result: CreateCardResponse = {
       ...SUCCESSFUL_ADDED,
       data: {id: newCard.id},
@@ -55,7 +55,7 @@ export class CardsController extends Controller {
     const pageSize = +queryParams.pageSize || 10;
     const page = +queryParams.page || 1;
 
-    const cards = await DAL.getByType(cardType, pageSize, page);
+    const cards = await DAL.getCardsByType(cardType, pageSize, page);
     const result: GetCardsResponse = {
       ...SUCCESSFUL,
       data: cards,
@@ -78,7 +78,7 @@ export class CardsController extends Controller {
     const pageSize = +queryParams.pageSize || 10;
     const page = +queryParams.page || 1;
 
-    const cards = await DAL.getByName(cardName, pageSize, page);
+    const cards = await DAL.getCardsByName(cardName, pageSize, page);
     const result: GetCardsResponse = {
       ...SUCCESSFUL,
       data: cards,
