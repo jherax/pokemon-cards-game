@@ -15,6 +15,12 @@ following keys:
 
 ```bash
 REACT_APP_POKEMON_API_URL=https://api.pokemontcg.io/v2/
+
+# Base URL for the backend services
+REACT_APP_BACKEND_BASE_URL=http://localhost:3004/api/v1/
+
+# JWT token used by backend endpoints
+REACT_APP_BACKEND_JWT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiMTcyNDgxMzAzNDQ1MCIsImlhdCI6MTcyNDgxMzAzNCwiZXhwIjoxNzI1NDE3ODM0fQ.hB9rwmd9gJVYJFBare0Jt47EBpNKHalGvTKW92Xa3N8
 ```
 
 ## Scripts

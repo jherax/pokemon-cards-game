@@ -20,7 +20,7 @@ const instance = Axios.create({
 instance.interceptors.request.use(
   // Auth and token validation should be handled here:
   // config.headers['Authorization'] = `Bearer ${TOKEN}`
-  config => config,
+  axiosConfig => axiosConfig,
   error => Promise.reject(error),
 );
 
