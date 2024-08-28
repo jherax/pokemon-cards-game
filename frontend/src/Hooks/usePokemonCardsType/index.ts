@@ -1,7 +1,7 @@
 import {useCallback, useContext, useEffect, useMemo} from 'react';
 
 import GlobalContext from '../../Providers/GlobalContext';
-import getPokemonCardsTypeMemo from './service';
+import getCardsByType from './service';
 
 const usePokemonCardsType = (typeId: PokemonTypes) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
@@ -27,7 +27,7 @@ const usePokemonCardsType = (typeId: PokemonTypes) => {
 
     // fetch the current page
     if (page !== lastPageFetched) {
-      getPokemonCardsTypeMemo(id, pageSize, page)
+      getCardsByType(id, pageSize, page)
         .then(dataCards => {
           let newCardsById: Record<string, ICard> = {};
 

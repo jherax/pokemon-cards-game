@@ -1,7 +1,7 @@
 import {useCallback, useContext, useEffect, useMemo} from 'react';
 
 import GlobalContext from '../../Providers/GlobalContext';
-import getPokemonCardsNameMemo from './service';
+import getCardsByName from './service';
 
 const usePokemonCardsName = (pokeName: string) => {
   const {globalState, setGlobalState} = useContext(GlobalContext);
@@ -28,7 +28,7 @@ const usePokemonCardsName = (pokeName: string) => {
 
     // fetch the current page
     if (page !== lastPageFetched) {
-      getPokemonCardsNameMemo(matchName, pageSize, page)
+      getCardsByName(matchName, pageSize, page)
         .then(dataCards => {
           let newCardsById: Record<string, ICard> = {};
 
