@@ -4,6 +4,7 @@ import * as express from 'express';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Request,
@@ -15,13 +16,14 @@ import {
 import type {
   CreateCardRequest,
   CreateCardResponse,
+  DeleteCardResponse,
   GetCardsQuery,
   GetCardsResponse,
 } from '../../../types/Requests';
 import DAL from '../../db/DAL/cards';
 import messages from '../../server/messages';
 
-const {SUCCESSFUL, SUCCESSFUL_ADDED} = messages;
+const {SUCCESSFUL, SUCCESSFUL_ADDED, SUCCESSFUL_DELETE} = messages;
 
 @Route('cards')
 export class CardsController extends Controller {
@@ -84,6 +86,22 @@ export class CardsController extends Controller {
       data: cards,
     };
     this.setStatus(SUCCESSFUL.statusCode);
+    return result;
+  }
+
+  /**
+   * Deletes a Pokémon card.
+   */
+  @SuccessResponse(SUCCESSFUL_DELETE.statusCode, SUCCESSFUL_DELETE.message)
+  @Security('jwt')
+  @Delete('delete/{cardId}')
+  public async deleteCard(cardId: string, @Request() request: express.Request) {
+    const rows = await DAL.deleteCard(cardId);
+    const result: DeleteCardResponse = {
+      ...SUCCESSFUL_DELETE,
+      data: {deleted: rows > 0},
+    };
+    this.setStatus(SUCCESSFUL_DELETE.statusCode);
     return result;
   }
 }

@@ -22,7 +22,7 @@ async function backendApiRequest(type: string, pageSize: number, page: number) {
     .then(({data}) => data.data || [])
     .catch(error => {
       console.error(error);
-      return [];
+      return [] as ICard[];
     });
 }
 

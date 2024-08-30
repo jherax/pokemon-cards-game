@@ -1,0 +1,10 @@
+@baseUrl = http://localhost:{{$dotenv APP_PORT}}
+
+# To get a valid JWT token, invoke the "/login" endpoint first, 
+# then copy the token from the response to the env variable JWT_TOKEN
+@auth_token = {{$dotenv JWT_TOKEN}}
+
+## Gets all Pokémon cards of Metal type
+DELETE {{baseUrl}}/api/v1/cards/delete/374f7ec3-ea11-447b-ac09-4bc87033e537
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}

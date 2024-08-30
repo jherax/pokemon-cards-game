@@ -570,6 +570,39 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"DeleteCardResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"properties": {
+							"deleted": {
+								"type": "boolean"
+							}
+						},
+						"required": [
+							"deleted"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"LoginResponse": {
 				"properties": {
 					"success": {
@@ -719,6 +752,39 @@
 					{
 						"in": "path",
 						"name": "cardName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/cards/delete/{cardId}": {
+			"delete": {
+				"operationId": "DeleteCard",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DeleteCardResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Deletes a Pokémon card.",
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cardId",
 						"required": true,
 						"schema": {
 							"type": "string"

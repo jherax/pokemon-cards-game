@@ -6,7 +6,7 @@ const messages: Record<string, ServerMessage> = {
     success: true,
   },
   SUCCESSFUL_DELETE: {
-    statusCode: 200,
+    statusCode: 202,
     message: 'Successfully deleted',
     success: true,
   },

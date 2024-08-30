@@ -29,6 +29,16 @@ export type GetCardsQuery = Readonly<{
   page: string | number;
 }>;
 
+export interface DeleteCardRequest {
+  cardId: string;
+}
+
+export interface DeleteCardResponse extends ServerMessage {
+  data: {
+    deleted: boolean;
+  };
+}
+
 declare type ServerMessage = {
   statusCode: number;
   message: string;
