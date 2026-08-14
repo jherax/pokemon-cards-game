@@ -50,3 +50,4 @@
 # cypress
 **/cypress/videos
 **/cypress/screenshots
+.qodo
