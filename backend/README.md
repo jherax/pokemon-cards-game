@@ -9,7 +9,7 @@ This backend application consist of a REST API which exposes the 👉
 
 ## Environment
 
-This aplication is created using Node.js v20. It is recommended using
+This aplication is created using Node.js v24. It is recommended using
 **[nvm](https://github.com/creationix/nvm)** (Node Version Manager) to manage
 Node.js versions. Go to
 [github.com/creationix/nvm](https://github.com/creationix/nvm) and check the

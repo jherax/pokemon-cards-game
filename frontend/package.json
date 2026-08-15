@@ -5,7 +5,7 @@
   "author": "David Rivera <jherax@gmail.com>",
   "license": "ISC",
   "engines": {
-    "node": ">=20",
+    "node": "24.x",
     "npm": ">=10"
   },
   "scripts": {

@@ -7,6 +7,9 @@ This is a Monorepo which consists of 2 projects:
 
 Each project has its own workspace, and its own environment settings (vscode, typescript, eslint, etc.)
 
+Both workspaces require Node.js 24.x. Run `nvm use` from the relevant workspace
+directory to select the version declared in its `.nvmrc` file.
+
 You can see the deployed App here:
 
 - [pokemon-cards-game-frontend.vercel.app](https://pokemon-cards-game-frontend.vercel.app/)
